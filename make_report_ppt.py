@@ -154,6 +154,18 @@ def add_bullet_list(slide, x, y, w, h, title, bullets, accent=BLUE):
         r.font.color.rgb = TEXT
 
 
+def add_note(slide, x, y, w, h, text, size=11, color=MUTED, align=PP_ALIGN.LEFT):
+    tx = slide.shapes.add_textbox(Inches(x), Inches(y), Inches(w), Inches(h))
+    p = tx.text_frame.paragraphs[0]
+    p.alignment = align
+    r = p.add_run()
+    r.text = text
+    r.font.name = "Microsoft YaHei"
+    r.font.size = Pt(size)
+    r.font.color.rgb = color
+    return tx
+
+
 prs = Presentation()
 prs.slide_width = Inches(13.333)
 prs.slide_height = Inches(7.5)
@@ -376,7 +388,32 @@ add_bullet_list(slide, 6.9, 4.0, 5.7, 2.3, "建议保留的真实信息", [
     "课程表页和联系页结构",
 ], accent=GREEN)
 
-# Slide 8 summary
+# Slide 8 data and privacy
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+set_bg(slide)
+add_header(slide, "微信数据模板", "只记业务字段，不存完整聊天")
+add_title_block(slide, "咨询记录与隐私规则", "微信是主入口，但真正要沉淀的是结构化摘要，不是聊天原文。")
+
+add_bullet_list(slide, 0.65, 2.0, 4.05, 2.45, "咨询记录字段", [
+    "时间",
+    "微信昵称 / 微信号",
+    "来源页面",
+    "课程方向、年级、需求摘要",
+], accent=GREEN)
+add_bullet_list(slide, 4.85, 2.0, 4.05, 2.45, "隐私规则", [
+    "不存完整聊天原文",
+    "不长期保留截图和语音",
+    "孩子学校、班级等敏感信息少存或匿名化",
+], accent=RED)
+add_bullet_list(slide, 9.05, 2.0, 3.55, 2.45, "每周复盘", [
+    "哪个课程最多",
+    "哪个入口最有效",
+    "微信 / WhatsApp 谁转化更高",
+], accent=BLUE)
+add_card(slide, 0.65, 4.8, 12.0, 1.15, "最实用的原则", "记录结果，不记录过程；保留摘要，不保留全文；看汇总，不看隐私原文。", fill=LIGHT, accent=TEAL, title_size=15, body_size=12)
+add_note(slide, 0.65, 6.15, 12.0, 0.4, "建议形式：Excel / Google Sheet / 企业微信后续接入。", size=11.5, color=MUTED, align=PP_ALIGN.RIGHT)
+
+# Slide 9 summary
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 set_bg(slide, NAVY)
 add_header(slide, "结论与下一步", "交付 / 补强 / 上线")
