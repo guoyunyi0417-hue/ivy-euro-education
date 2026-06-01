@@ -156,6 +156,12 @@ a {
   box-shadow: 0 16px 30px rgba(18, 140, 126, 0.22);
 }
 
+.button-wechat {
+  color: #fff;
+  background: linear-gradient(135deg, #1aad19, #0d7f2f);
+  box-shadow: 0 16px 30px rgba(13, 127, 47, 0.22);
+}
+
 .topbar-cta:hover,
 .button:hover,
 .menu-button:hover {
