@@ -113,6 +113,10 @@ a {
   color: var(--text);
 }
 
+.nav a.is-active {
+  color: var(--accent);
+}
+
 .topbar-cta,
 .button {
   display: inline-flex;
