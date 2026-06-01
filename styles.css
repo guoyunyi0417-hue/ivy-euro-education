@@ -476,7 +476,7 @@ a {
 
 .contact-section {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-columns: 0.95fr 0.7fr 1.05fr;
   gap: 20px;
   margin: 86px 0 24px;
   padding: 28px;
@@ -490,6 +490,39 @@ a {
 
 .contact-copy {
   padding: 12px 8px 12px 4px;
+}
+
+.qr-panel {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  justify-items: center;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius-xl) - 4px);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.qr-panel img {
+  display: block;
+  width: min(100%, 220px);
+  aspect-ratio: 1;
+  object-fit: contain;
+  border-radius: 20px;
+  background: #fff;
+}
+
+.qr-panel strong {
+  display: block;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.qr-panel p {
+  margin: 0;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.7;
 }
 
 .contact-form {
@@ -539,6 +572,10 @@ a {
   cursor: pointer;
 }
 
+.footer-contact {
+  margin-top: 24px;
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -568,6 +605,19 @@ a {
 
   .results-grid {
     grid-template-columns: 1fr;
+  }
+
+  .contact-section {
+    grid-template-columns: 1fr;
+  }
+
+  .qr-panel {
+    justify-items: start;
+  }
+
+  .qr-panel strong,
+  .qr-panel p {
+    text-align: left;
   }
 }
 
