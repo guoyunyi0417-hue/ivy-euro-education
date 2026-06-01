@@ -432,6 +432,20 @@ a {
   overflow: hidden;
 }
 
+.schedule-preview {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius-xl) - 4px);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 30px rgba(16, 32, 51, 0.06);
+}
+
+.schedule-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .band-item {
   display: grid;
   gap: 8px;
@@ -618,6 +632,10 @@ a {
   .qr-panel strong,
   .qr-panel p {
     text-align: left;
+  }
+
+  .schedule-preview {
+    order: 3;
   }
 }
 
