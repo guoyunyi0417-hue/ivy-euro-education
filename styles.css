@@ -150,6 +150,12 @@ a {
   border: 1px solid var(--line);
 }
 
+.button-whatsapp {
+  color: #fff;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  box-shadow: 0 16px 30px rgba(18, 140, 126, 0.22);
+}
+
 .topbar-cta:hover,
 .button:hover,
 .menu-button:hover {
