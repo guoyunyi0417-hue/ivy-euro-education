@@ -431,6 +431,35 @@ a {
   background: rgba(255, 255, 255, 0.7);
 }
 
+.seasonal-promo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  margin: 0 0 18px;
+  border: 1px solid rgba(27, 109, 255, 0.16);
+  border-radius: calc(var(--radius-xl) - 4px);
+  background:
+    linear-gradient(135deg, rgba(27, 109, 255, 0.08), rgba(255, 255, 255, 0.88)),
+    rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 30px rgba(16, 32, 51, 0.06);
+}
+
+.seasonal-promo h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+}
+
+.seasonal-promo p {
+  max-width: 66ch;
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
 .section {
   padding: 86px 0 0;
 }
@@ -982,6 +1011,10 @@ a {
 
   .schedule-preview {
     order: 3;
+  }
+
+  .seasonal-promo {
+    display: grid;
   }
 }
 

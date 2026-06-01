@@ -24,6 +24,23 @@ if (navLinks.length) {
   });
 }
 
+document.querySelectorAll("[data-seasonal-promo]").forEach((promo) => {
+  const startRaw = promo.getAttribute("data-start");
+  const endRaw = promo.getAttribute("data-end");
+
+  if (!startRaw || !endRaw) {
+    return;
+  }
+
+  const startDate = new Date(`${startRaw}T00:00:00`);
+  const endDate = new Date(`${endRaw}T23:59:59`);
+  const today = new Date();
+
+  if (today < startDate || today > endDate) {
+    promo.remove();
+  }
+});
+
 document.querySelector(".contact-form")?.addEventListener("submit", (event) => {
   event.preventDefault();
   alert("已收到预约信息。这里可以接入真实表单提交。");
