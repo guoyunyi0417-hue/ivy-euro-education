@@ -437,7 +437,30 @@ add_bullet_list(slide, 6.9, 4.9, 5.7, 1.75, "建议固定标签", [
     "试听 / 报名",
 ], accent=GREEN)
 
-# Slide 10 summary
+# Slide 10 微信自动抽取方案
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+set_bg(slide)
+add_header(slide, "微信自动抽取方案", "模板 + 标签 + 结构化记录")
+add_title_block(slide, "从聊天变成表格", "把非结构化微信消息自动变成可统计的咨询记录。")
+
+add_bullet_list(slide, 0.65, 2.0, 4.15, 2.55, "获取聊天内容", [
+    "企业微信 / 客服系统：可接官方 API",
+    "个人微信：建议人工导出后再解析",
+    "优先处理“摘要”，少保留原文",
+], accent=BLUE)
+add_bullet_list(slide, 4.95, 2.0, 4.15, 2.55, "抽取关键字段", [
+    "课程方向、年级、意向程度",
+    "是否问价格 / 试听 / 时间",
+    "联系方式、来源、状态标签",
+], accent=GREEN)
+add_bullet_list(slide, 9.25, 2.0, 3.45, 2.55, "落地输出", [
+    "一行结构化记录",
+    "Excel / Sheet / CRM",
+], accent=AMBER)
+add_card(slide, 0.65, 4.9, 5.95, 1.6, "实现方式", "轻量版：正则 + 关键词 + 表格\n进阶版：大模型 API 返回 JSON 模板", fill=WHITE, accent=TEAL, title_size=15, body_size=11)
+add_card(slide, 6.9, 4.9, 5.7, 1.6, "注意事项", "个人微信建议半自动人工确认；企业微信/客服系统更适合全流程接入。", fill=WHITE, accent=RED, title_size=15, body_size=11)
+
+# Slide 11 summary
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 set_bg(slide, NAVY)
 add_header(slide, "结论与下一步", "交付 / 补强 / 上线")
