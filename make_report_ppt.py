@@ -413,7 +413,31 @@ add_bullet_list(slide, 9.05, 2.0, 3.55, 2.45, "每周复盘", [
 add_card(slide, 0.65, 4.8, 12.0, 1.15, "最实用的原则", "记录结果，不记录过程；保留摘要，不保留全文；看汇总，不看隐私原文。", fill=LIGHT, accent=TEAL, title_size=15, body_size=12)
 add_note(slide, 0.65, 6.15, 12.0, 0.4, "建议形式：Excel / Google Sheet / 企业微信后续接入。", size=11.5, color=MUTED, align=PP_ALIGN.RIGHT)
 
-# Slide 9 summary
+# Slide 9微信记录模板
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+set_bg(slide)
+add_header(slide, "微信记录模板", "可直接复制使用")
+add_title_block(slide, "咨询记录与示例", "把咨询记录统一成结构化字段，方便后续统计和复盘。")
+
+add_bullet_list(slide, 0.65, 2.0, 4.1, 2.55, "Excel / Sheet 表头", [
+    "编号、时间、微信昵称、微信号",
+    "来源页面、课程方向、年级/年龄",
+    "需求摘要、当前状态、是否试听、是否报名、备注",
+], accent=BLUE)
+add_card(slide, 4.95, 2.0, 4.1, 2.55, "微信里直接记", "时间：\n昵称：\n微信号：\n来源：\n课程：\n年级：\n需求：\n状态：\n试听：\n报名：\n备注：", fill=WHITE, accent=GREEN, title_size=15, body_size=11)
+add_card(slide, 9.25, 2.0, 3.45, 2.55, "一行版示例", "2026-06-02 10:30 | IvyEuro学校刘老师 | sophialiu0826 | 首页 | 中文 | 5年级 | 想试听阅读写作 | 已回复 | 是 | 否 | 周末方便", fill=WHITE, accent=AMBER, title_size=14, body_size=11)
+add_bullet_list(slide, 0.65, 4.9, 5.95, 1.75, "建议状态标签", [
+    "新咨询",
+    "已回复",
+    "已预约",
+    "已报名",
+], accent=TEAL)
+add_bullet_list(slide, 6.9, 4.9, 5.7, 1.75, "建议固定标签", [
+    "英语 / 数学 / 中文 / 西语/加泰",
+    "试听 / 报名",
+], accent=GREEN)
+
+# Slide 10 summary
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 set_bg(slide, NAVY)
 add_header(slide, "结论与下一步", "交付 / 补强 / 上线")
