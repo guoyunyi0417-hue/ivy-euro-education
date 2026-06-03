@@ -115,6 +115,32 @@ function buildPronunciationFallback(referenceText, transcriptText) {
   };
 }
 
+function getRuntimeConfig() {
+  const didClientKey = process.env.DID_CLIENT_KEY || "";
+  const didAgentId = process.env.DID_AGENT_ID || "";
+  const didTargetId = process.env.DID_TARGET_ID || "did-agent-container";
+  const didGreetingText = process.env.DID_GREETING_TEXT || "Hello! Let's practice English together.";
+  const didAutoConnect = process.env.DID_AUTO_CONNECT !== "false";
+  const speechLanguage = process.env.AZURE_SPEECH_LANGUAGE || process.env.SPEECH_LANGUAGE || "en-US";
+  const speechRegion = process.env.AZURE_SPEECH_REGION || process.env.SPEECH_REGION || "";
+
+  return {
+    did: {
+      enabled: Boolean(didClientKey && didAgentId),
+      clientKey: didClientKey,
+      agentId: didAgentId,
+      targetId: didTargetId,
+      greetingText: didGreetingText,
+      autoConnect: didAutoConnect,
+    },
+    speech: {
+      enabled: Boolean((process.env.AZURE_SPEECH_KEY || process.env.SPEECH_KEY) && speechRegion),
+      region: speechRegion,
+      language: speechLanguage,
+    },
+  };
+}
+
 function buildLocalReply(payload) {
   const question = payload.question || "";
   const mode = payload.mode || { id: "dialogue", label: "对话", title: "对话" };
@@ -354,6 +380,11 @@ function createServer() {
 
     if (pathname === "/api/health") {
       sendJson(res, 200, { ok: true, service: "ivy-tutor-engine" });
+      return;
+    }
+
+    if (pathname === "/api/runtime-config") {
+      sendJson(res, 200, getRuntimeConfig());
       return;
     }
 

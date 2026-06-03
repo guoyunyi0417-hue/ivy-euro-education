@@ -6,6 +6,21 @@
     return window.IVY_DID_CONFIG || {};
   }
 
+  async function getRuntimeConfig() {
+    try {
+      const response = await fetch("/api/runtime-config", {
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) {
+        return {};
+      }
+      const data = await response.json();
+      return data?.did || {};
+    } catch {
+      return {};
+    }
+  }
+
   function getContainer() {
     return document.querySelector("[data-did-agent-container]");
   }
@@ -88,10 +103,10 @@
     const container = getContainer();
     if (!container) return;
 
-    const config = getConfig();
-    const hasConfig = Boolean(config.clientKey && config.agentId);
+    const initialConfig = getConfig();
+    const hasInitialConfig = Boolean(initialConfig.clientKey && initialConfig.agentId);
 
-    if (!hasConfig) {
+    if (!hasInitialConfig) {
       setPlaceholder(
         container,
         "连接 D-ID 互动头像",
@@ -103,7 +118,7 @@
         "正在连接 D-ID",
         "角色载入后，这里会变成可交互的英语课堂头像。"
       );
-      mountEmbed(container, config);
+      mountEmbed(container, initialConfig);
     }
 
     document.addEventListener("click", (event) => {
@@ -125,6 +140,24 @@
         requestFullscreen();
       }
     });
+
+    if (!hasInitialConfig) {
+      getRuntimeConfig().then((runtimeConfig) => {
+        if (!runtimeConfig?.clientKey || !runtimeConfig?.agentId) {
+          return;
+        }
+        if (document.getElementById(SCRIPT_ID)) {
+          return;
+        }
+        window.IVY_DID_CONFIG = { ...initialConfig, ...runtimeConfig };
+        setPlaceholder(
+          container,
+          "正在连接 D-ID",
+          "已从运行时配置读取到头像信息，正在载入可交互课堂。"
+        );
+        mountEmbed(container, window.IVY_DID_CONFIG);
+      });
+    }
   }
 
   window.addEventListener("DOMContentLoaded", init);

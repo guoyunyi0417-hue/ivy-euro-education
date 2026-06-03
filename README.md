@@ -53,12 +53,21 @@ npm start
 - `AZURE_SPEECH_REGION`
 - `AZURE_SPEECH_LANGUAGE`
 
+如果你要让英语页的 D-ID 互动头像自动挂载，还可以配置：
+
+- `DID_CLIENT_KEY`
+- `DID_AGENT_ID`
+- `DID_TARGET_ID`
+- `DID_GREETING_TEXT`
+- `DID_AUTO_CONNECT`
+
 当前支持的接口：
 
 - `POST /api/tutor/ask`
 - `POST /api/tutor/chat`
 - `POST /api/tutor/search`
 - `POST /api/tutor/feedback`
+- `GET /api/runtime-config`
 - `POST /api/speech/token`
 - `POST /api/pronunciation/assess`
 
