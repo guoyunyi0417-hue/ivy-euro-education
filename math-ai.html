@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>数学 AI 互动练习 | IvyEuro Education</title>
+    <meta
+      name="description"
+      content="IvyEuro Education 数学 AI 互动练习页，面向题目拆解、步骤检查、错题复盘和讲题示范，后续可接入 AI 讲题与步骤反馈能力。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html"><span class="brand-mark">IE</span><span class="brand-text"><strong>IvyEuro Education</strong><small>Online School · Barcelona</small></span></a>
+        <button class="menu-button" type="button" aria-label="展开导航" data-menu-button><span></span><span></span><span></span></button>
+        <nav class="nav" data-nav>
+          <a href="index.html">首页</a><a href="courses.html">课程详情</a><a href="outcomes.html">课程成果</a><a href="services.html">服务项目</a><a href="about.html">关于我们</a><a href="team.html">老师简介</a><a href="schedule.html">课程表</a><a href="testimonials.html">家长好评</a><a href="news.html">新闻动态</a><a href="contact.html">联系我们</a>
+        </nav>
+        <a class="topbar-cta" href="contact.html">Get in Touch</a>
+      </header>
+
+      <main>
+        <section class="subpage-hero subpage-hero-split">
+          <div class="hero-copy-block">
+            <span class="section-kicker">数学 AI 互动练习</span>
+            <h1>让孩子在“做题”之前，先把思路理清、步骤写对</h1>
+            <p>
+              这个页面是数学课程的 AI 互动入口，后续可以接入讲题演示、步骤反馈和错题复练，让学生不只知道答案，还知道为什么这样做。
+            </p>
+          </div>
+          <div class="hero-panel hero-panel-compact">
+            <div class="micro-metrics">
+              <div class="metric-card"><strong>互动方式</strong><span>讲题、拆题、步骤检查、错题复盘</span></div>
+              <div class="metric-card"><strong>练习重点</strong><span>审题、列式、计算、验算、表达</span></div>
+              <div class="metric-card"><strong>接入方向</strong><span>AI 讲题角色 + 步骤反馈 + 错题回练</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section ai-studio">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">课堂界面</span>
+              <h2>把数学练习区做成一个可以直接拆题的工作台</h2>
+              <p>
+                左边负责演示讲解，右边负责列步骤、写答案和看反馈。后续接入 AI 讲题和步骤校验后，这一屏就能直接变成完整的数学互动课堂。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="课堂状态">
+              <span>Problem Demo</span>
+              <span>Step Check</span>
+              <span>Error Review</span>
+            </div>
+          </div>
+
+          <div class="classroom-grid">
+            <article class="classroom-stage math-stage">
+              <div class="stage-screen">
+                <div class="stage-topline">
+                  <span class="live-pill">● AI Teacher</span>
+                  <span class="stage-title">Today’s problem: 3x + 5 = 20</span>
+                </div>
+                <div class="avatar-stage math-board">
+                  <div class="avatar-core">
+                    <strong>Math Board</strong>
+                    <span>Interactive problem-solving area</span>
+                  </div>
+                </div>
+                <p class="stage-caption">
+                  这里后续可嵌入 AI 讲题逻辑，支持题目拆解、步骤提示、答案验算和错题复练。
+                </p>
+              </div>
+              <div class="practice-toolbar">
+                <a class="button button-primary" href="contact.html">开始拆题</a>
+                <a class="button button-secondary" href="contact.html">检查步骤</a>
+                <a class="button button-secondary" href="contact.html">看示范解法</a>
+                <a class="button button-secondary" href="contact.html">再做一题</a>
+              </div>
+            </article>
+
+            <aside class="classroom-side">
+              <article class="info-card practice-console">
+                <div class="card-head">
+                  <span class="card-tag">今日练习</span>
+                  <h3>从审题到验算</h3>
+                </div>
+                <ol class="detail-list">
+                  <li>先看题目，确认已知条件和要求。</li>
+                  <li>把复杂题拆成可执行的步骤。</li>
+                  <li>列式计算，保留关键过程。</li>
+                  <li>最后验算，检查答案是否合理。</li>
+                </ol>
+                <div class="prompt-chip-row" aria-label="练习提示">
+                  <span class="prompt-chip">Read the problem</span>
+                  <span class="prompt-chip">Break into steps</span>
+                  <span class="prompt-chip">Check your work</span>
+                </div>
+              </article>
+
+              <article class="info-card feedback-panel">
+                <div class="card-head">
+                  <span class="card-tag">即时反馈</span>
+                  <h3>四项指标同步显示</h3>
+                </div>
+                <div class="score-grid">
+                  <div class="score-tile">
+                    <strong>Understanding</strong>
+                    <span>题意是否读对、抓对</span>
+                  </div>
+                  <div class="score-tile">
+                    <strong>Method</strong>
+                    <span>步骤是否完整、清楚</span>
+                  </div>
+                  <div class="score-tile">
+                    <strong>Accuracy</strong>
+                    <span>计算是否正确、稳定</span>
+                  </div>
+                  <div class="score-tile">
+                    <strong>Review</strong>
+                    <span>验算和错题修复是否到位</span>
+                  </div>
+                </div>
+                <p class="panel-note">后续接 AI 讲题引擎后，这一层可以直接输出步骤缺口和回练建议。</p>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section practice-workbench">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">今日脚本</span>
+              <h2>每一次练习都做成“讲题 - 列步骤 - 检查 - 回练”的闭环</h2>
+              <p>
+                这里不是普通题目卡片，而是可以直接拿来做课堂演示的数学工作台。后续接上 AI 讲题后，老师和学生都能看懂下一步怎么做。
+              </p>
+            </div>
+          </div>
+
+          <div class="workbench-grid">
+            <article class="info-card workbench-script">
+              <div class="card-head">
+                <span class="card-tag">Script 01</span>
+                <h3>示范题：3x + 5 = 20</h3>
+              </div>
+              <div class="script-flow">
+                <div class="script-step">
+                  <span>AI 示范</span>
+                  <strong>先减 5，再除以 3。</strong>
+                  <p>让学生先看懂方程变形的逻辑，而不是直接背答案。</p>
+                </div>
+                <div class="script-step">
+                  <span>学生回答</span>
+                  <strong>x = 5</strong>
+                  <p>学生自己列步骤并写出答案，系统记录过程是否完整。</p>
+                </div>
+                <div class="script-step">
+                  <span>纠错提示</span>
+                  <strong>注意先做等式两边同样的运算。</strong>
+                  <p>如果顺序错了，系统会提示回到方程变形的第一步。</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="info-card workbench-console">
+              <div class="card-head">
+                <span class="card-tag">Console</span>
+                <h3>课堂实时反馈面板</h3>
+              </div>
+              <div class="console-panel">
+                <div class="console-row">
+                  <span class="console-label">输入内容</span>
+                  <strong>3x + 5 = 20</strong>
+                </div>
+                <div class="console-row">
+                  <span class="console-label">系统建议</span>
+                  <strong>先减 5，再除以 3，步骤要写完整。</strong>
+                </div>
+                <div class="console-row">
+                  <span class="console-label">下一步</span>
+                  <strong>再做一题同类方程，确认掌握。</strong>
+                </div>
+              </div>
+              <div class="prompt-chip-row prompt-chip-row-alt">
+                <span class="prompt-chip">Solve</span>
+                <span class="prompt-chip">Explain</span>
+                <span class="prompt-chip">Check</span>
+                <span class="prompt-chip">Redo</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="feature-band">
+          <div class="band-copy">
+            <span class="section-kicker">练习逻辑</span>
+            <h2>先让学生看见方法，再让系统检查步骤是否完整</h2>
+            <p>
+              数学最容易卡在“会一点但不完整”。这个页面就是为这种学习场景准备的：先示范方法，再检查步骤，再回练巩固。
+            </p>
+          </div>
+          <div class="band-list">
+            <div class="band-item"><strong>看方法</strong><span>先理解为什么要这样做。</span></div>
+            <div class="band-item"><strong>写步骤</strong><span>把每一步都列清楚。</span></div>
+            <div class="band-item"><strong>做复盘</strong><span>检查错误并重新做一遍。</span></div>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <article class="info-card course-card">
+            <div class="card-head"><span class="card-tag">场景 1</span><h3>基础计算</h3></div>
+            <p>让 AI 先讲解基本运算和步骤写法，再让学生反复练到稳定为止。</p>
+          </article>
+          <article class="info-card course-card">
+            <div class="card-head"><span class="card-tag">场景 2</span><h3>应用题拆解</h3></div>
+            <p>把复杂题拆成条件、关系、算式和答案四步，减少“看着会但不知道从哪下手”。</p>
+          </article>
+          <article class="info-card course-card">
+            <div class="card-head"><span class="card-tag">场景 3</span><h3>错题复练</h3></div>
+            <p>把错题重新讲一遍，再用同类题确认学生是否真正掌握了方法。</p>
+          </article>
+        </section>
+
+        <section class="section integration-kit">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">集成示例</span>
+              <h2>把数学页留成可以挂 AI 讲题和步骤反馈的位置</h2>
+              <p>
+                这一块保留了“讲题入口、步骤检查、反馈展示、再练入口”的接口位置，等正式接 AI 讲题时，前端结构基本不用改。
+              </p>
+            </div>
+          </div>
+
+          <div class="integration-grid">
+            <article class="info-card integration-slot">
+              <div class="card-head">
+                <span class="card-tag">Slot 01</span>
+                <h3>讲题入口</h3>
+              </div>
+              <p>在这里嵌入 AI 讲题能力，负责示范解法、拆题和关键步骤引导。</p>
+              <div class="code-block">embed: math-explainer-container</div>
+            </article>
+
+            <article class="info-card integration-slot">
+              <div class="card-head">
+                <span class="card-tag">Slot 02</span>
+                <h3>步骤检查</h3>
+              </div>
+              <p>学生列出步骤后，在这里检查逻辑是否完整、算式是否正确。</p>
+              <div class="code-block">api: step-checking-engine</div>
+            </article>
+
+            <article class="info-card integration-slot">
+              <div class="card-head">
+                <span class="card-tag">Slot 03</span>
+                <h3>错题反馈</h3>
+              </div>
+              <p>把步骤检查的结果翻译成可读建议，告诉学生哪里错、怎么改。</p>
+              <div class="code-block">ui: math-feedback-panel</div>
+            </article>
+          </div>
+
+          <div class="integration-shell">
+            <div class="integration-shell-copy">
+              <span class="section-kicker">页面工作流</span>
+              <h3>从打开页面到完成一次练习，只需要四步</h3>
+              <ol class="detail-list">
+                <li>先看 AI 示范的解题过程。</li>
+                <li>学生点击按钮开始拆题或列步骤。</li>
+                <li>系统检查步骤完整性和答案准确性。</li>
+                <li>学生按提示回练同类题，巩固方法。</li>
+              </ol>
+            </div>
+            <div class="integration-shell-panel">
+              <div class="shell-header">
+                <span class="shell-badge">Ready to Connect</span>
+                <strong>Math AI Classroom</strong>
+              </div>
+              <div class="shell-surface">
+                <span class="shell-orb"></span>
+                <span class="shell-orb shell-orb-alt"></span>
+                <div class="shell-screen">
+                  <strong>Step-by-step problem solving</strong>
+                  <span>AI explanation + step verification + redo mode</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section integration-api">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">接入蓝图</span>
+              <h2>前端、讲题引擎、步骤校验和复练面板分层接入</h2>
+              <p>
+                这不是临时拼出来的效果页，而是后续真正接数学 AI 时可以沿用的产品结构。
+              </p>
+            </div>
+          </div>
+
+          <div class="integration-api-grid">
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 01</span>
+                <h3>前端练习页</h3>
+              </div>
+              <p>负责展示题目、示范按钮、步骤输入和反馈结果，是用户实际看到的页面。</p>
+              <div class="code-block">/math-ai.html</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 02</span>
+                <h3>AI 讲题引擎</h3>
+              </div>
+              <p>负责示范解题路径、拆题逻辑和关键步骤提示。</p>
+              <div class="code-block">POST /math/explain / session</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 03</span>
+                <h3>步骤校验引擎</h3>
+              </div>
+              <p>负责检查学生写的步骤是否完整、是否遗漏关键运算或逻辑。</p>
+              <div class="code-block">score: method + accuracy + completeness</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 04</span>
+                <h3>反馈与复练</h3>
+              </div>
+              <p>把校验结果转成可读建议，再把学生带回练习入口形成闭环。</p>
+              <div class="code-block">repeat → correct → re-check</div>
+            </article>
+          </div>
+
+          <article class="info-card api-spec-card">
+            <div class="card-head">
+              <span class="card-tag">示意数据</span>
+              <h3>一次完整互动的大致返回结构</h3>
+            </div>
+            <div class="api-spec-grid">
+              <div>
+                <p class="api-spec-label">学生输入</p>
+                <div class="code-block">{"problem":"3x + 5 = 20","work":"x = 5"}</div>
+              </div>
+              <div>
+                <p class="api-spec-label">系统返回</p>
+                <div class="code-block">{"understanding":90,"method":84,"accuracy":88,"next":"redo"}</div>
+              </div>
+              <div>
+                <p class="api-spec-label">前端展示</p>
+                <div class="code-block">示范解法 / 步骤提示 / 再练按钮 / 完成状态</div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="page-footer">
+          <div class="band-list">
+            <div class="band-item"><strong>适合人群</strong><span>需要补基础、理思路、练步骤和提升稳定性的数学学习者。</span></div>
+            <div class="band-item"><strong>常见变化</strong><span>步骤更清楚、审题更快、正确率更稳。</span></div>
+            <div class="band-item"><strong>下一步</strong><span>接入讲题和步骤校验后即可上线试用。</span></div>
+          </div>
+          <div class="section-link-row">
+            <a class="button button-secondary" href="math.html">返回数学课程</a>
+            <a class="button button-secondary" href="courses.html">返回课程详情</a>
+            <a class="button button-primary" href="contact.html">咨询数学 AI 互动</a>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

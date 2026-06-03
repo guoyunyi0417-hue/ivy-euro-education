@@ -1228,6 +1228,28 @@ a {
   line-height: 1.7;
 }
 
+.math-stage .stage-screen {
+  background:
+    linear-gradient(180deg, rgba(18, 24, 40, 0.96), rgba(60, 88, 166, 0.9)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 30%);
+}
+
+.math-stage .avatar-stage {
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 56%),
+    rgba(255, 255, 255, 0.04);
+}
+
+.math-board .avatar-core {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
+    rgba(255, 255, 255, 0.04);
+}
+
+.math-board .avatar-core strong {
+  font-family: "Manrope", "Noto Sans SC", system-ui, sans-serif;
+}
+
 .integration-api {
   padding-top: 24px;
 }
