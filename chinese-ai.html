@@ -368,6 +368,103 @@
           </article>
         </section>
 
+        <section class="feature-band">
+          <div class="band-copy">
+            <span class="section-kicker">知识库</span>
+            <h2>AI 中文导师的知识库，来自教材、朗读材料和写作范例</h2>
+            <p>
+              这些内容会优先参与 AI 中文老师的检索与回答，支持识字、朗读、纠错、作文和阅读等核心练习。
+            </p>
+          </div>
+          <div class="band-list">
+            <div class="band-item"><strong>Plain text</strong><span>讲义、课文、练习文本和自定义材料。</span></div>
+            <div class="band-item"><strong>部编版语文教材</strong><span>学校同步和基础积累的权威内容。</span></div>
+            <div class="band-item"><strong>课外阅读</strong><span>阅读理解、段落分析和词句拓展。</span></div>
+            <div class="band-item"><strong>拼音朗读材料</strong><span>读音、停顿和语感训练的基础素材。</span></div>
+            <div class="band-item"><strong>作文范文</strong><span>结构、表达和润色的示范条目。</span></div>
+          </div>
+        </section>
+
+        <section class="section tutor-system" id="chinese-ai-tutor">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">AI 中文老师</span>
+              <h2>角色先检索知识库，再组织示范、纠错和追问</h2>
+              <p>
+                这不是单纯的展示页，而是一个知识库驱动的中文导师原型。每次回答都会先从课文、朗读材料、阅读范例和作文范文里检索，再给出更贴近课堂的回应。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="知识库状态">
+              <span>Knowledge-first</span>
+              <span>Source aware</span>
+              <span>Demo ready</span>
+            </div>
+          </div>
+
+          <div class="tutor-grid">
+            <article class="info-card tutor-role-card">
+              <div class="card-head">
+                <span class="card-tag">Role</span>
+                <h3>IvyEuro AI Chinese Tutor</h3>
+              </div>
+              <p>
+                这个角色优先使用知识库条目，再按学生年龄、题目难度和练习目标组织答案。它更像一位会识字、会朗读、会纠错、会追问的中文老师。
+              </p>
+              <div class="tutor-mode-row" aria-label="导师规则">
+                <span class="tutor-mode">先检索知识库</span>
+                <span class="tutor-mode">再给课堂示范</span>
+                <span class="tutor-mode">最后生成练习</span>
+              </div>
+              <ol class="detail-list">
+                <li>先找和问题最贴近的知识条目。</li>
+                <li>再组织成适合学生年龄的中文讲法。</li>
+                <li>最后给出可朗读、可复练、可追问的输出。</li>
+              </ol>
+            </article>
+
+            <article class="info-card tutor-chat-card">
+              <div class="card-head">
+                <span class="card-tag">Knowledge Ask</span>
+                <h3>输入问题，AI 中文老师自动调用知识库</h3>
+              </div>
+              <div class="tutor-active-mode">
+                <strong id="chinese-active-mode-title">当前功能：对话</strong>
+                <span id="chinese-active-mode-hint">先做情景问答，再输出示范句和追问。</span>
+              </div>
+              <label class="tutor-label" for="chinese-ai-question">你可以直接问：</label>
+              <textarea id="chinese-ai-question" class="tutor-input" placeholder="例如：怎么帮小学二年级学生练识字和朗读？"></textarea>
+              <div class="prompt-sample-row" aria-label="示例问题">
+                <button class="prompt-sample" type="button" data-chinese-sample="怎么帮小学二年级学生练识字和朗读？">识字 + 朗读</button>
+                <button class="prompt-sample" type="button" data-chinese-sample="这句话有病句，帮我纠正">病句纠错</button>
+                <button class="prompt-sample" type="button" data-chinese-sample="帮我写一段学校生活作文">作文练习</button>
+              </div>
+              <div class="tutor-mode-row tutor-mode-row-inline" aria-label="功能切换">
+                <button class="tutor-mode is-active" type="button" data-chinese-mode="dialogue">对话</button>
+                <button class="tutor-mode" type="button" data-chinese-mode="correction">纠错</button>
+                <button class="tutor-mode" type="button" data-chinese-mode="pronunciation">发音</button>
+                <button class="tutor-mode" type="button" data-chinese-mode="essay">作文</button>
+                <button class="tutor-mode" type="button" data-chinese-mode="reading">阅读</button>
+                <button class="tutor-mode" type="button" data-chinese-mode="plain-text">Plain text</button>
+              </div>
+              <div class="tutor-actions">
+                <button class="button button-primary" type="button" data-chinese-ask>调用知识库回答</button>
+                <button class="button button-secondary" type="button" data-chinese-reset>换一个示例</button>
+              </div>
+              <div class="tutor-answer" id="chinese-ai-answer" aria-live="polite"></div>
+              <div class="tutor-source-row" id="chinese-ai-sources" aria-label="命中的知识库来源"></div>
+            </article>
+
+            <aside class="info-card tutor-kb-card">
+              <div class="card-head">
+                <span class="card-tag">知识库</span>
+                <h3>已挖出的来源条目</h3>
+              </div>
+              <p>这些来源已经被整理成结构化条目，会优先参与 AI 中文老师的回答生成和课堂示范。</p>
+              <div class="knowledge-list" id="chinese-kb-list"></div>
+            </aside>
+          </div>
+        </section>
+
         <section class="page-footer">
           <div class="band-list">
             <div class="band-item"><strong>适合人群</strong><span>拼音不稳、阅读慢、写作弱、中文输入不足的学生。</span></div>
@@ -382,6 +479,7 @@
         </section>
       </main>
     </div>
+    <script src="chinese-ai.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

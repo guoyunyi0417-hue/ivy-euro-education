@@ -368,6 +368,103 @@
           </article>
         </section>
 
+        <section class="feature-band">
+          <div class="band-copy">
+            <span class="section-kicker">知识库</span>
+            <h2>AI 数学导师的知识库，来自讲义、题库和错题本</h2>
+            <p>
+              这些内容会优先参与 AI 数学老师的检索与回答，支持讲题、拆题、步骤纠错、应用题和错题复练。
+            </p>
+          </div>
+          <div class="band-list">
+            <div class="band-item"><strong>Plain text</strong><span>讲义、题目、练习文本和自定义材料。</span></div>
+            <div class="band-item"><strong>数学教材</strong><span>学校同步和基础巩固的权威内容。</span></div>
+            <div class="band-item"><strong>题库</strong><span>应用题、分层题和能力题训练。</span></div>
+            <div class="band-item"><strong>错题本</strong><span>错因分析、步骤修复和回练素材。</span></div>
+            <div class="band-item"><strong>讲题范例</strong><span>解题步骤、表达方式和示范过程。</span></div>
+          </div>
+        </section>
+
+        <section class="section tutor-system" id="math-ai-tutor">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">AI 数学老师</span>
+              <h2>角色先检索知识库，再组织讲题、纠错和追问</h2>
+              <p>
+                这不是单纯的展示页，而是一个知识库驱动的数学导师原型。每次回答都会先从教材、题库、错题本和讲题范例里检索，再给出更贴近课堂的回应。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="知识库状态">
+              <span>Knowledge-first</span>
+              <span>Source aware</span>
+              <span>Demo ready</span>
+            </div>
+          </div>
+
+          <div class="tutor-grid">
+            <article class="info-card tutor-role-card">
+              <div class="card-head">
+                <span class="card-tag">Role</span>
+                <h3>IvyEuro AI Math Tutor</h3>
+              </div>
+              <p>
+                这个角色优先使用知识库条目，再按学生年级、题目难度和练习目标组织答案。它更像一位会讲题、会拆题、会纠错、会追问的数学老师。
+              </p>
+              <div class="tutor-mode-row" aria-label="导师规则">
+                <span class="tutor-mode">先检索知识库</span>
+                <span class="tutor-mode">再给课堂示范</span>
+                <span class="tutor-mode">最后生成练习</span>
+              </div>
+              <ol class="detail-list">
+                <li>先找和问题最贴近的知识条目。</li>
+                <li>再组织成适合学生年级的数学讲法。</li>
+                <li>最后给出可拆题、可复练、可追问的输出。</li>
+              </ol>
+            </article>
+
+            <article class="info-card tutor-chat-card">
+              <div class="card-head">
+                <span class="card-tag">Knowledge Ask</span>
+                <h3>输入问题，AI 数学老师自动调用知识库</h3>
+              </div>
+              <div class="tutor-active-mode">
+                <strong id="math-active-mode-title">当前功能：对话</strong>
+                <span id="math-active-mode-hint">先做题目问答，再输出步骤和追问。</span>
+              </div>
+              <label class="tutor-label" for="math-ai-question">你可以直接问：</label>
+              <textarea id="math-ai-question" class="tutor-input" placeholder="例如：怎么帮五年级学生练应用题？"></textarea>
+              <div class="prompt-sample-row" aria-label="示例问题">
+                <button class="prompt-sample" type="button" data-math-sample="怎么帮五年级学生练应用题？">应用题</button>
+                <button class="prompt-sample" type="button" data-math-sample="这道题步骤有问题，帮我纠错">步骤纠错</button>
+                <button class="prompt-sample" type="button" data-math-sample="给我一个方程讲题示范">讲题示范</button>
+              </div>
+              <div class="tutor-mode-row tutor-mode-row-inline" aria-label="功能切换">
+                <button class="tutor-mode is-active" type="button" data-math-mode="dialogue">对话</button>
+                <button class="tutor-mode" type="button" data-math-mode="correction">纠错</button>
+                <button class="tutor-mode" type="button" data-math-mode="pronunciation">发音</button>
+                <button class="tutor-mode" type="button" data-math-mode="essay">作文</button>
+                <button class="tutor-mode" type="button" data-math-mode="reading">阅读</button>
+                <button class="tutor-mode" type="button" data-math-mode="plain-text">Plain text</button>
+              </div>
+              <div class="tutor-actions">
+                <button class="button button-primary" type="button" data-math-ask>调用知识库回答</button>
+                <button class="button button-secondary" type="button" data-math-reset>换一个示例</button>
+              </div>
+              <div class="tutor-answer" id="math-ai-answer" aria-live="polite"></div>
+              <div class="tutor-source-row" id="math-ai-sources" aria-label="命中的知识库来源"></div>
+            </article>
+
+            <aside class="info-card tutor-kb-card">
+              <div class="card-head">
+                <span class="card-tag">知识库</span>
+                <h3>已挖出的来源条目</h3>
+              </div>
+              <p>这些来源已经被整理成结构化条目，会优先参与 AI 数学老师的回答生成和课堂示范。</p>
+              <div class="knowledge-list" id="math-kb-list"></div>
+            </aside>
+          </div>
+        </section>
+
         <section class="page-footer">
           <div class="band-list">
             <div class="band-item"><strong>适合人群</strong><span>需要补基础、理思路、练步骤和提升稳定性的数学学习者。</span></div>
@@ -382,6 +479,7 @@
         </section>
       </main>
     </div>
+    <script src="math-ai.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,116 @@
+{
+  "tutor": {
+    "name": "IvyEuro AI Chinese Tutor",
+    "role": "先检索知识库，再组织成识字、朗读、纠错和表达练习的答案。",
+    "principles": [
+      "先找来源，再生成回答",
+      "优先使用可朗读、可练习的短句",
+      "根据年级和水平调整语气和复杂度",
+      "回答后给出下一步练习"
+    ]
+  },
+  "sources": [
+    {
+      "id": "plain-text",
+      "name": "Plain text",
+      "summary": "可直接导入讲义、课文、练习文本和课堂纠错记录。",
+      "focus": "自定义内容、课堂文本、练习材料",
+      "keywords": ["自定义", "讲义", "练习", "文本", "纠错", "课堂", "课文", "读写"]
+    },
+    {
+      "id": "textbook",
+      "name": "部编版语文教材",
+      "summary": "适合学校同步、基础积累和分阶段训练。",
+      "focus": "课内同步、基础积累、阶段训练",
+      "keywords": ["教材", "课文", "同步", "语文", "拼音", "识字", "朗读", "字词"]
+    },
+    {
+      "id": "reading",
+      "name": "课外阅读",
+      "summary": "适合阅读理解、段落分析和词句拓展。",
+      "focus": "阅读理解、段落分析、词句拓展",
+      "keywords": ["阅读", "理解", "段落", "词句", "拓展", "故事", "文章"]
+    },
+    {
+      "id": "pinyin",
+      "name": "拼音朗读材料",
+      "summary": "适合读音、停顿和语感训练。",
+      "focus": "拼音、朗读、节奏",
+      "keywords": ["拼音", "朗读", "读音", "停顿", "语感", "发音"]
+    },
+    {
+      "id": "writing",
+      "name": "作文范文",
+      "summary": "适合结构、表达和润色示范。",
+      "focus": "结构、表达、润色",
+      "keywords": ["作文", "范文", "表达", "结构", "润色", "写作"]
+    }
+  ],
+  "modes": [
+    {
+      "id": "plain-text",
+      "label": "Plain text",
+      "title": "导入文本",
+      "summary": "把课文、讲义和练习变成可直接讲解的内容。",
+      "promptHint": "适合上传讲义、课文、练习或自定义文本。",
+      "preferredSources": ["plain-text"],
+      "sampleQuestions": ["把这段课文整理成课堂要点", "把这份练习变成三步练习", "把这篇文章总结成 5 个重点"],
+      "outputStyle": "摘要 + 可讲解要点 + 下一步"
+    },
+    {
+      "id": "dialogue",
+      "label": "对话",
+      "title": "情景对话",
+      "summary": "围绕校园、生活和日常场景进行问答与追问。",
+      "promptHint": "适合练习口头表达和完整句输出。",
+      "preferredSources": ["textbook", "plain-text"],
+      "sampleQuestions": ["请和学生做一个校园问答", "请模拟老师和学生的自我介绍", "请练习一个去图书馆的对话"],
+      "outputStyle": "对白 + 追问 + 复述"
+    },
+    {
+      "id": "correction",
+      "label": "纠错",
+      "title": "病句纠错",
+      "summary": "把学生输入修正成更自然、更准确的中文。",
+      "promptHint": "适合批改病句、语序和用词问题。",
+      "preferredSources": ["textbook", "plain-text"],
+      "sampleQuestions": ["这句话有病句，帮我纠正", "我昨天去公园玩和朋友，帮我改", "这句表达不顺，帮我润色"],
+      "outputStyle": "原句 + 修改句 + 错误说明"
+    },
+    {
+      "id": "pronunciation",
+      "label": "发音",
+      "title": "拼音与朗读",
+      "summary": "聚焦拼音、声调、停顿和语感。",
+      "promptHint": "适合练拼音、朗读和句子节奏。",
+      "preferredSources": ["pinyin", "textbook"],
+      "sampleQuestions": ["请示范这句话的拼音和停顿", "我想练‘我们一起去公园’的朗读", "请帮我纠正这句的声调"],
+      "outputStyle": "拼音提示 + 停顿建议 + 跟读句"
+    },
+    {
+      "id": "essay",
+      "label": "作文",
+      "title": "写作批改",
+      "summary": "从立意、结构、连接到完整段落输出。",
+      "promptHint": "适合写段落、写短文、做作文提纲和润色。",
+      "preferredSources": ["writing", "plain-text"],
+      "sampleQuestions": ["写一段关于学校生活的作文", "帮我把这篇作文改得更有逻辑", "给我一个关于旅行的段落提纲"],
+      "outputStyle": "提纲 + 示例段落 + 连接词"
+    },
+    {
+      "id": "reading",
+      "label": "阅读",
+      "title": "阅读理解",
+      "summary": "帮助学生抓主旨、找细节、理解词句关系。",
+      "promptHint": "适合阅读理解、词句拓展和短文分析。",
+      "preferredSources": ["reading", "textbook"],
+      "sampleQuestions": ["帮我分析这篇阅读的主旨", "这篇文章里有哪些关键词", "给我一个阅读理解训练"],
+      "outputStyle": "主旨 + 关键词 + 题目"
+    }
+  ],
+  "demoQuestions": [
+    "怎么帮小学二年级学生练识字和朗读？",
+    "这句话有病句，帮我纠正",
+    "怎样把学校里的语文课文和课后练习串起来？"
+  ]
+}
