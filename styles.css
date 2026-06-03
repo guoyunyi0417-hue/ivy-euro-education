@@ -1262,6 +1262,18 @@ a {
     rgba(255, 255, 255, 0.04);
 }
 
+.spanish-stage .stage-screen {
+  background:
+    linear-gradient(180deg, rgba(24, 35, 27, 0.96), rgba(40, 115, 76, 0.9)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 30%);
+}
+
+.spanish-board .avatar-core {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
+    rgba(255, 255, 255, 0.04);
+}
+
 .integration-api {
   padding-top: 24px;
 }
