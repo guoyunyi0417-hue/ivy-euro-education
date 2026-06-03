@@ -1,0 +1,28 @@
+{
+  "tutor": {
+    "name": "IvyEuro AI Programming Tutor",
+    "role": "先检索知识库，再组织成项目拆解、代码讲解、纠错和复盘的答案。",
+    "principles": [
+      "先找来源，再生成回答",
+      "优先使用可拆解、可复练的步骤",
+      "根据年级和项目复杂度调整表达",
+      "回答后给出下一步练习"
+    ]
+  },
+  "sources": [
+    { "id": "plain-text", "name": "Plain text", "summary": "可直接导入讲义、需求说明、代码片段和课堂记录。", "focus": "自定义内容、课堂文本、练习材料", "keywords": ["自定义", "讲义", "练习", "文本", "课堂", "代码", "需求"] },
+    { "id": "project-notes", "name": "Project notes", "summary": "适合项目目标、功能列表和任务拆解。", "focus": "项目目标、任务拆解、功能列表", "keywords": ["项目", "功能", "目标", "拆解", "任务", "计划"] },
+    { "id": "code-samples", "name": "Code samples", "summary": "适合代码讲解、语法示范和修复建议。", "focus": "代码讲解、语法示范、修复建议", "keywords": ["代码", "语法", "示范", "修复", "错误", "function", "class"] },
+    { "id": "tooling", "name": "AI tools", "summary": "适合工具使用、Prompt 设计和流程效率。", "focus": "AI 工具、Prompt、流程效率", "keywords": ["工具", "AI", "prompt", "流程", "效率", "copilot", "chatgpt"] },
+    { "id": "review", "name": "Review notes", "summary": "适合复盘、优化建议和迭代清单。", "focus": "复盘、优化建议、迭代清单", "keywords": ["复盘", "review", "优化", "迭代", "检查", "改进"] }
+  ],
+  "modes": [
+    { "id": "plain-text", "label": "Plain text", "title": "导入文本", "summary": "把需求、讲义和代码片段变成可直接讲解的内容。", "promptHint": "适合上传需求文档、讲义、代码片段或自定义文本。", "preferredSources": ["plain-text"], "sampleQuestions": ["把这段需求整理成项目要点", "把这份笔记变成三步练习", "把这段代码总结成 5 个重点"], "outputStyle": "摘要 + 可讲解要点 + 下一步" },
+    { "id": "dialogue", "label": "对话", "title": "需求对话", "summary": "围绕需求、目标和功能进行问答与追问。", "promptHint": "适合练习需求描述、功能拆解和沟通表达。", "preferredSources": ["project-notes", "plain-text"], "sampleQuestions": ["请和学生做一个需求问答", "请模拟老师和学生讨论功能拆解", "请练习一个项目启动对话"], "outputStyle": "对白 + 追问 + 复述" },
+    { "id": "correction", "label": "纠错", "title": "代码纠错", "summary": "把学生输入修正成更完整、更准确的代码或步骤。", "promptHint": "适合批改代码、找逻辑问题和改实现错误。", "preferredSources": ["code-samples", "plain-text"], "sampleQuestions": ["这段代码有问题，帮我纠正", "我的循环写错了，帮我改", "这一步逻辑不对，帮我解释"], "outputStyle": "原代码 + 修改版 + 错误说明" },
+    { "id": "pronunciation", "label": "讲解", "title": "讲解示范", "summary": "聚焦项目讲解、步骤顺序和表达清晰度。", "promptHint": "适合练项目讲解、口头表达和步骤顺序。", "preferredSources": ["project-notes", "review"], "sampleQuestions": ["请示范这段项目讲解", "我想练这道代码题的表达", "请帮我检查讲解顺序"], "outputStyle": "步骤提示 + 讲解建议 + 跟练题" },
+    { "id": "essay", "label": "项目", "title": "项目设计", "summary": "从思路、结构、功能到完整项目输出。", "promptHint": "适合写项目计划、做功能清单和润色表达。", "preferredSources": ["project-notes", "tooling"], "sampleQuestions": ["写一段这个项目的设计思路", "帮我把这个项目改得更有逻辑", "给我一个 TODO 应用的提纲"], "outputStyle": "提纲 + 示例过程 + 连接词" },
+    { "id": "reading", "label": "阅读", "title": "代码阅读", "summary": "帮助学生抓结构、找重点、理解代码关系。", "promptHint": "适合代码阅读、结构分析和功能拆解。", "preferredSources": ["code-samples", "review"], "sampleQuestions": ["帮我分析这段代码的主旨", "这段代码里有哪些关键函数", "给我一个代码阅读训练"], "outputStyle": "主旨 + 关键词 + 题目" }
+  ],
+  "demoQuestions": ["怎么帮学生练项目拆解和 Python 基础？", "这段代码有问题，帮我纠正", "怎样把一个项目需求串成完整流程？"]
+}

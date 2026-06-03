@@ -18,7 +18,12 @@ function createKnowledgeTutor(config) {
   const functionCards = document.querySelectorAll(selectors.functionCards);
 
   function normalizeText(value) {
-    return (value || "").toLowerCase().replace(/[^\w\u4e00-\u9fa5]+/g, " ");
+    return (value || "")
+      .toString()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace(/[^\w\u4e00-\u9fa5]+/g, " ");
   }
 
   function getMode(modeId) {

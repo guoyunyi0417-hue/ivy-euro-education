@@ -1,0 +1,28 @@
+{
+  "tutor": {
+    "name": "IvyEuro AI French Tutor",
+    "role": "先检索知识库，再组织成对话、纠错、发音和考试复练的答案。",
+    "principles": [
+      "先找来源，再生成回答",
+      "优先使用可开口、可复练的短句",
+      "根据年级和考试要求调整表达",
+      "回答后给出下一步练习"
+    ]
+  },
+  "sources": [
+    { "id": "plain-text", "name": "Plain text", "summary": "可直接导入讲义、作业、示范文本和课堂纠错记录。", "focus": "自定义内容、课堂文本、练习材料", "keywords": ["自定义", "讲义", "作业", "练习", "文本", "纠错", "课堂"] },
+    { "id": "dialogue-book", "name": "Dialogue book", "summary": "适合口语练习、问答和日常表达。", "focus": "口语、对话、日常表达", "keywords": ["口语", "对话", "说", "表达", "conversation", "dialogue", "parler"] },
+    { "id": "pronunciation", "name": "Pronunciation guide", "summary": "适合发音、连读、节奏和重音训练。", "focus": "发音、连读、节奏、重音", "keywords": ["发音", "连读", "节奏", "重音", "pronunciation", "accent", "intonation"] },
+    { "id": "exam-prep", "name": "Exam prep", "summary": "适合分级考试、题型训练和阶段复练。", "focus": "考试准备、题型、复练", "keywords": ["考试", "分级", "复练", "题型", "exam", "DELF", "DALF"] },
+    { "id": "reading-writing", "name": "Reading & writing", "summary": "适合阅读理解、短文写作和表达拓展。", "focus": "阅读理解、短文写作、表达拓展", "keywords": ["阅读", "写作", "短文", "表达", "reading", "writing"] }
+  ],
+  "modes": [
+    { "id": "plain-text", "label": "Plain text", "title": "导入文本", "summary": "把讲义、作业和示范文本变成可直接讲解的内容。", "promptHint": "适合上传讲义、作业、示范句或自定义文本。", "preferredSources": ["plain-text"], "sampleQuestions": ["把这段讲义整理成课堂要点", "把这份作业变成三步练习", "把这段示范句总结成 5 个重点"], "outputStyle": "摘要 + 可讲解要点 + 下一步" },
+    { "id": "dialogue", "label": "对话", "title": "情景对话", "summary": "围绕学校、生活和考试场景进行问答与追问。", "promptHint": "适合练习口头表达和完整句输出。", "preferredSources": ["dialogue-book", "plain-text"], "sampleQuestions": ["请和学生做一个校园问答", "请模拟老师和学生的自我介绍", "请练习一个问路的对话"], "outputStyle": "对白 + 追问 + 复述" },
+    { "id": "correction", "label": "纠错", "title": "表达纠错", "summary": "把学生输入修正成更自然、更准确的法语表达。", "promptHint": "适合批改句子、语序和表达问题。", "preferredSources": ["reading-writing", "plain-text"], "sampleQuestions": ["这句话有表达问题，帮我纠正", "我昨天去公园和朋友，帮我改", "这句不自然，帮我润色"], "outputStyle": "原句 + 修改句 + 错误说明" },
+    { "id": "pronunciation", "label": "发音", "title": "发音示范", "summary": "聚焦发音、连读、语调和停顿。", "promptHint": "适合练发音、朗读和句子节奏。", "preferredSources": ["pronunciation", "dialogue-book"], "sampleQuestions": ["请示范这句话的发音和停顿", "我想练这句的朗读", "请帮我纠正这句的语调"], "outputStyle": "发音提示 + 停顿建议 + 跟读句" },
+    { "id": "essay", "label": "作文", "title": "写作批改", "summary": "从结构、表达、连接到完整段落输出。", "promptHint": "适合写段落、写短文、做提纲和润色。", "preferredSources": ["reading-writing", "plain-text"], "sampleQuestions": ["写一段关于学校生活的短文", "帮我把这篇作文改得更有逻辑", "给我一个旅行段落提纲"], "outputStyle": "提纲 + 示例段落 + 连接词" },
+    { "id": "reading", "label": "阅读", "title": "阅读理解", "summary": "帮助学生抓主旨、找细节、理解词句关系。", "promptHint": "适合阅读理解、词汇拓展和短文分析。", "preferredSources": ["reading-writing", "exam-prep"], "sampleQuestions": ["帮我分析这篇阅读的主旨", "这篇文章里有哪些关键词", "给我一个阅读理解训练"], "outputStyle": "主旨 + 关键词 + 题目" }
+  ],
+  "demoQuestions": ["怎么帮学生练法语口语和发音？", "这句话有表达问题，帮我纠正", "怎样把法语课文和考试复练串起来？"]
+}
