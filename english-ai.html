@@ -395,7 +395,7 @@
             <span class="section-kicker">知识库</span>
             <h2>AI 英语导师的知识库，由权威教材和结构化文本组成</h2>
             <p>
-              这些内容会作为导师的主要知识库条目，在课堂示范、跟读纠错和对话练习中统一调用，保证内容稳定、口径一致。
+              这些内容已经被整理成可调用的知识库条目，课堂示范、跟读纠错和对话练习都会优先检索对应来源，保证内容稳定、口径一致。
             </p>
           </div>
           <div class="band-list">
@@ -404,6 +404,74 @@
             <div class="band-item"><strong>Cambridge</strong><span>作为分级、题型和标准化训练的知识条目。</span></div>
             <div class="band-item"><strong>Reach Higher</strong><span>作为课堂体系、阅读写作与综合提升的知识条目。</span></div>
             <div class="band-item"><strong>美国学校教材</strong><span>作为本地化英语学习和学校同步内容的知识条目。</span></div>
+          </div>
+        </section>
+
+        <section class="section tutor-system" id="english-ai-tutor">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">AI 英语老师</span>
+              <h2>角色先检索知识库，再组织示范、纠错和追问</h2>
+              <p>
+                这不是单纯的展示页，而是一个知识库驱动的英语导师原型。每次回答都会先从 Plain text、Oxford、Cambridge、Reach Higher 和美国学校教材里检索，再给出更贴近课堂的回应。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="知识库状态">
+              <span>Knowledge-first</span>
+              <span>Source aware</span>
+              <span>Demo ready</span>
+            </div>
+          </div>
+
+          <div class="tutor-grid">
+            <article class="info-card tutor-role-card">
+              <div class="card-head">
+                <span class="card-tag">Role</span>
+                <h3>IvyEuro AI English Tutor</h3>
+              </div>
+              <p>
+                这个角色优先使用知识库条目，再按学生年龄、题目难度和练习目标组织答案。它更像一位会示范、会纠错、会追问的课堂老师，而不是只会泛泛聊天的通用机器人。
+              </p>
+              <div class="tutor-mode-row" aria-label="导师规则">
+                <span class="tutor-mode">先检索知识库</span>
+                <span class="tutor-mode">再给课堂示范</span>
+                <span class="tutor-mode">最后生成练习</span>
+              </div>
+              <ol class="detail-list">
+                <li>先找和问题最贴近的知识条目。</li>
+                <li>再组织成适合学生年龄的英语讲法。</li>
+                <li>最后给出可跟读、可复练、可追问的输出。</li>
+              </ol>
+            </article>
+
+            <article class="info-card tutor-chat-card">
+              <div class="card-head">
+                <span class="card-tag">Knowledge Ask</span>
+                <h3>输入问题，AI 英语老师自动调用知识库</h3>
+              </div>
+              <label class="tutor-label" for="english-ai-question">你可以直接问：</label>
+              <textarea id="english-ai-question" class="tutor-input" placeholder="例如：怎么帮小学三年级学生练英语阅读和口语？"></textarea>
+              <div class="prompt-sample-row" aria-label="示例问题">
+                <button class="prompt-sample" type="button" data-sample-query="怎么帮小学三年级学生练英语阅读和口语？">小学阅读 + 口语</button>
+                <button class="prompt-sample" type="button" data-sample-query="学生总是发音拖尾，应该怎么纠正？">发音纠错</button>
+                <button class="prompt-sample" type="button" data-sample-query="怎样把学校里的英语课本和课后练习串起来？">学校同步</button>
+              </div>
+              <div class="tutor-actions">
+                <button class="button button-primary" type="button" data-english-ai-ask>调用知识库回答</button>
+                <button class="button button-secondary" type="button" data-english-ai-reset>换一个示例</button>
+              </div>
+              <div class="tutor-answer" id="english-ai-answer" aria-live="polite"></div>
+              <div class="tutor-source-row" id="english-ai-sources" aria-label="命中的知识库来源"></div>
+            </article>
+
+            <aside class="info-card tutor-kb-card">
+              <div class="card-head">
+                <span class="card-tag">知识库</span>
+                <h3>已挖出的来源条目</h3>
+              </div>
+              <p>这些来源已经被整理成结构化条目，会优先参与 AI 英语老师的回答生成和课堂示范。</p>
+              <div class="knowledge-list" id="english-kb-list"></div>
+            </aside>
           </div>
         </section>
 
@@ -421,6 +489,7 @@
         </section>
       </main>
     </div>
+    <script src="english-ai.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

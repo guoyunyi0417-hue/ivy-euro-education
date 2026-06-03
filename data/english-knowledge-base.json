@@ -1,0 +1,54 @@
+{
+  "tutor": {
+    "name": "IvyEuro AI English Tutor",
+    "role": "先检索知识库，再组织成课堂示范、跟读纠错和追问练习的答案。",
+    "principles": [
+      "先找来源，再生成回答",
+      "优先使用可教学、可复练的短句",
+      "根据年龄和水平调整语气和复杂度",
+      "回答后给出下一步练习"
+    ]
+  },
+  "sources": [
+    {
+      "id": "plain-text",
+      "name": "Plain text",
+      "summary": "可直接导入自定义课程内容、讲义、练习文本和课堂纠错记录。",
+      "focus": "自定义内容、课堂文本、练习材料",
+      "keywords": ["自定义", "讲义", "练习", "文本", "纠错", "课堂", "worksheet", "lesson"]
+    },
+    {
+      "id": "oxford",
+      "name": "Oxford",
+      "summary": "适合英语阅读、词汇与表达的权威参考，便于构建稳定的词汇和阅读训练。",
+      "focus": "词汇、阅读、表达",
+      "keywords": ["oxford", "阅读", "词汇", "表达", "reading", "vocabulary", "词组"]
+    },
+    {
+      "id": "cambridge",
+      "name": "Cambridge",
+      "summary": "适合分级练习、题型训练和标准化输出，尤其适合测评和阶段提升。",
+      "focus": "分级、题型、标准化练习",
+      "keywords": ["cambridge", "分级", "题型", "测评", "考试", "标准化", "level", "exam"]
+    },
+    {
+      "id": "reach-higher",
+      "name": "Reach Higher",
+      "summary": "适合课堂体系、阅读写作与综合提升，能把知识点串成完整训练路径。",
+      "focus": "阅读、写作、综合提升",
+      "keywords": ["reach higher", "写作", "阅读", "综合", "提升", "课堂", "writing"]
+    },
+    {
+      "id": "us-textbook",
+      "name": "美国学校教材",
+      "summary": "适合本地化英语学习、学校同步与日常表达，便于贴近课堂场景。",
+      "focus": "学校同步、日常表达、课堂场景",
+      "keywords": ["美国", "学校", "教材", "同步", "课堂", "口语", "日常", "school", "textbook"]
+    }
+  ],
+  "demoQuestions": [
+    "怎么帮小学三年级学生练英语阅读和口语？",
+    "学生总是发音拖尾，应该怎么纠正？",
+    "怎样把学校里的英语课本和课后练习串起来？"
+  ]
+}
