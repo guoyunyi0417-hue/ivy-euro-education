@@ -1302,6 +1302,135 @@ a {
   line-height: 1.7;
 }
 
+.did-agent-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.did-agent-frame {
+  display: grid;
+  place-items: center;
+  min-height: 320px;
+  padding: 18px;
+  border: 1px solid rgba(16, 32, 51, 0.08);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at center, rgba(27, 109, 255, 0.12), transparent 56%),
+    rgba(255, 255, 255, 0.88);
+  overflow: hidden;
+}
+
+.did-agent-frame-loading {
+  position: relative;
+}
+
+.did-agent-frame-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(27, 109, 255, 0.12), transparent);
+  animation: did-scan 1.8s linear infinite;
+}
+
+.did-agent-placeholder {
+  display: grid;
+  gap: 10px;
+  place-items: center;
+  text-align: center;
+  width: min(100%, 320px);
+  padding: 26px;
+  border: 1px solid rgba(27, 109, 255, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 248, 255, 0.94)),
+    #fff;
+}
+
+.did-agent-placeholder strong {
+  display: block;
+  font-size: 1.22rem;
+  letter-spacing: -0.03em;
+}
+
+.did-agent-placeholder span {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.did-agent-placeholder-warn {
+  border-color: rgba(255, 200, 77, 0.28);
+}
+
+.did-agent-placeholder-error {
+  border-color: rgba(255, 130, 130, 0.28);
+}
+
+.pronunciation-lab {
+  padding-top: 24px;
+}
+
+.pronunciation-grid,
+.pronunciation-results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.pronunciation-setup,
+.pronunciation-input,
+.pronunciation-score-card,
+.pronunciation-feedback-card {
+  display: grid;
+  gap: 14px;
+}
+
+.record-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pronunciation-status {
+  padding: 14px 16px;
+  border: 1px solid rgba(27, 109, 255, 0.14);
+  border-radius: 16px;
+  background: rgba(27, 109, 255, 0.08);
+  color: #244c9b;
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.score-grid-pronunciation {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.pronunciation-feedback {
+  display: grid;
+  gap: 10px;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.pronunciation-feedback p {
+  margin: 0;
+}
+
+.pronunciation-json {
+  margin-top: auto;
+  white-space: pre-wrap;
+}
+
+@keyframes did-scan {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
 .math-stage .stage-screen {
   background:
     linear-gradient(180deg, rgba(18, 24, 40, 0.96), rgba(60, 88, 166, 0.9)),

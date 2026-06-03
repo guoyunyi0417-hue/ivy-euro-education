@@ -392,6 +392,100 @@
           </article>
         </section>
 
+        <section class="section pronunciation-lab">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">发音评测实验室</span>
+              <h2>录一段音，马上看见准确度、流畅度和完整度</h2>
+              <p>
+                这一层会优先连到 Azure Speech Pronunciation Assessment；如果还没配置，就先走本地评分回退，让你马上看到完整流程。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="评测状态">
+              <span>Mic Ready</span>
+              <span>Azure Optional</span>
+              <span>Local Fallback</span>
+            </div>
+          </div>
+
+          <div class="pronunciation-grid">
+            <article class="info-card pronunciation-setup">
+              <div class="card-head">
+                <span class="card-tag">Step 01</span>
+                <h3>选择参考句</h3>
+              </div>
+              <label class="tutor-label" for="pronunciation-reference">系统会用这句话来评测学生朗读：</label>
+              <textarea id="pronunciation-reference" class="tutor-input" rows="4">Can you say that again?</textarea>
+              <div class="prompt-sample-row" aria-label="发音示例">
+                <button class="prompt-sample" type="button" data-pronunciation-sample="Can you say that again?">标准句 1</button>
+                <button class="prompt-sample" type="button" data-pronunciation-sample="Could you repeat that more slowly?">标准句 2</button>
+                <button class="prompt-sample" type="button" data-pronunciation-sample="I would like to practice reading aloud.">标准句 3</button>
+              </div>
+              <div class="record-controls">
+                <button class="button button-primary" type="button" data-pronunciation-start>开始评测</button>
+                <button class="button button-secondary" type="button" data-pronunciation-stop>停止 / 重置</button>
+              </div>
+              <div class="pronunciation-status" data-pronunciation-status>等待开始评测。</div>
+            </article>
+
+            <article class="info-card pronunciation-input">
+              <div class="card-head">
+                <span class="card-tag">Step 02</span>
+                <h3>学生实际读了什么</h3>
+              </div>
+              <p>如果当前浏览器暂时不支持在线语音评测，可以先把学生读出来的文本手动填进来，系统仍然能做基础评分。</p>
+              <textarea id="pronunciation-transcript" class="tutor-input" rows="6" placeholder="例如：Can you say that again?"></textarea>
+              <div class="prompt-chip-row">
+                <span class="prompt-chip">Reference text</span>
+                <span class="prompt-chip">Student transcript</span>
+                <span class="prompt-chip">Assessment result</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="pronunciation-results-grid">
+            <article class="info-card pronunciation-score-card">
+              <div class="card-head">
+                <span class="card-tag">Score</span>
+                <h3>实时评分</h3>
+              </div>
+              <div class="score-grid score-grid-pronunciation">
+                <div class="score-tile">
+                  <strong id="pronunciation-score">--</strong>
+                  <span>Pronunciation</span>
+                </div>
+                <div class="score-tile">
+                  <strong id="accuracy-score">--</strong>
+                  <span>Accuracy</span>
+                </div>
+                <div class="score-tile">
+                  <strong id="fluency-score">--</strong>
+                  <span>Fluency</span>
+                </div>
+                <div class="score-tile">
+                  <strong id="completeness-score">--</strong>
+                  <span>Completeness</span>
+                </div>
+                <div class="score-tile">
+                  <strong id="prosody-score">--</strong>
+                  <span>Prosody</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="info-card pronunciation-feedback-card">
+              <div class="card-head">
+                <span class="card-tag">Feedback</span>
+                <h3>纠错建议与下一步</h3>
+              </div>
+              <div id="pronunciation-feedback" class="pronunciation-feedback">
+                <p>评测结果会显示在这里，告诉学生哪几个词错了、重音该落在哪里、下一步怎么再练。</p>
+              </div>
+              <div id="pronunciation-json" class="code-block pronunciation-json">{"status":"waiting"}</div>
+            </article>
+          </div>
+        </section>
+
         <section class="feature-band">
           <div class="band-copy">
             <span class="section-kicker">知识库</span>
@@ -576,6 +670,7 @@
     </script>
     <script src="tutor-engine.js"></script>
     <script src="did-agent-loader.js"></script>
+    <script src="pronunciation-assessment-loader.js"></script>
     <script src="english-ai.js"></script>
     <script src="script.js"></script>
   </body>

@@ -47,12 +47,20 @@ npm start
 - `LLM_BASE_URL`
 - `LLM_MODEL`
 
+如果你要启用英语页的 Azure 发音评测，还可以配置：
+
+- `AZURE_SPEECH_KEY`
+- `AZURE_SPEECH_REGION`
+- `AZURE_SPEECH_LANGUAGE`
+
 当前支持的接口：
 
 - `POST /api/tutor/ask`
 - `POST /api/tutor/chat`
 - `POST /api/tutor/search`
 - `POST /api/tutor/feedback`
+- `POST /api/speech/token`
+- `POST /api/pronunciation/assess`
 
 ## 云上开发建议
 

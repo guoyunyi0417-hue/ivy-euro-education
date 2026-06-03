@@ -72,6 +72,49 @@ function getTopSources(question, knowledgeBase, mode) {
   return top.length ? top : sources.slice(0, 3);
 }
 
+function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function wordTokens(value) {
+  return normalizeText(value).split(/\s+/).filter(Boolean);
+}
+
+function buildPronunciationFallback(referenceText, transcriptText) {
+  const refWords = wordTokens(referenceText);
+  const trWords = wordTokens(transcriptText);
+  const matched = refWords.filter((word) => trWords.includes(word));
+  const overlap = refWords.length ? matched.length / refWords.length : 0;
+  const extraWords = Math.max(0, trWords.length - refWords.length);
+  const missingWords = Math.max(0, refWords.length - matched.length);
+  const punctuationBonus = /[.?!]/.test(transcriptText) ? 6 : 0;
+
+  const accuracy = clamp(Math.round(58 + overlap * 42 - extraWords * 2), 40, 100);
+  const completeness = clamp(Math.round(overlap * 100), 35, 100);
+  const fluency = clamp(Math.round(72 - Math.abs(trWords.length - refWords.length) * 3 + punctuationBonus), 35, 100);
+  const prosody = clamp(Math.round(66 + (referenceText.length > 18 ? 8 : 4) - missingWords * 2), 35, 100);
+  const pronunciation = Math.round((accuracy * 0.4) + (fluency * 0.25) + (completeness * 0.2) + (prosody * 0.15));
+
+  const weakPoints = [];
+  if (accuracy < 85) weakPoints.push("部分单词发音还可以更清楚");
+  if (fluency < 85) weakPoints.push("句子节奏可以再连贯一点");
+  if (completeness < 85) weakPoints.push("有几个关键词还没完整读到");
+  if (prosody < 85) weakPoints.push("重音和语调可以再跟着标准句练一次");
+
+  return {
+    pronunciation,
+    accuracy,
+    fluency,
+    completeness,
+    prosody,
+    transcriptText: transcriptText || "",
+    referenceText,
+    feedback: weakPoints.length ? weakPoints : ["读得很稳定，可以进入下一句。"],
+    nextStep: pronunciation >= 85 ? "继续挑战更长一句，加入问答练习。" : "再跟读一次，重点放在重音和停顿。",
+    mode: "local",
+  };
+}
+
 function buildLocalReply(payload) {
   const question = payload.question || "";
   const mode = payload.mode || { id: "dialogue", label: "对话", title: "对话" };
@@ -201,6 +244,48 @@ async function handleTutorSearch(payload) {
   };
 }
 
+async function handlePronunciationToken() {
+  const key = process.env.AZURE_SPEECH_KEY || process.env.SPEECH_KEY;
+  const region = process.env.AZURE_SPEECH_REGION || process.env.SPEECH_REGION;
+  const language = process.env.AZURE_SPEECH_LANGUAGE || "en-US";
+
+  if (!key || !region) {
+    return {
+      enabled: false,
+      message: "Azure Speech is not configured.",
+      region: region || "",
+      language,
+    };
+  }
+
+  const endpoint = `https://${region}.api.cognitive.microsoft.com/sts/v1.0/issueToken`;
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Ocp-Apim-Subscription-Key": key,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Azure token request failed with ${response.status}`);
+  }
+
+  const token = await response.text();
+  return {
+    enabled: true,
+    token,
+    region,
+    language,
+    expiresIn: 9 * 60,
+  };
+}
+
+async function handlePronunciationAssess(payload) {
+  const referenceText = payload.referenceText || "Can you say that again?";
+  const transcriptText = payload.transcriptText || "";
+  return buildPronunciationFallback(referenceText, transcriptText || referenceText);
+}
+
 async function readJson(req) {
   return await new Promise((resolve, reject) => {
     let data = "";
@@ -305,7 +390,7 @@ function createServer() {
       return;
     }
 
-    if (pathname === "/api/tutor/feedback" && req.method === "POST") {
+  if (pathname === "/api/tutor/feedback" && req.method === "POST") {
       try {
         const payload = await readJson(req);
         sendJson(res, 200, {
@@ -319,10 +404,31 @@ function createServer() {
       } catch (error) {
         sendJson(res, 400, { error: error.message || "Bad Request" });
       }
-      return;
-    }
+    return;
+  }
 
-    if (pathname === "/") {
+  if (pathname === "/api/speech/token" && req.method === "POST") {
+    try {
+      const result = await handlePronunciationToken();
+      sendJson(res, 200, result);
+    } catch (error) {
+      sendJson(res, 400, { enabled: false, error: error.message || "Bad Request" });
+    }
+    return;
+  }
+
+  if (pathname === "/api/pronunciation/assess" && req.method === "POST") {
+    try {
+      const payload = await readJson(req);
+      const result = await handlePronunciationAssess(payload);
+      sendJson(res, 200, result);
+    } catch (error) {
+      sendJson(res, 400, { error: error.message || "Bad Request" });
+    }
+    return;
+  }
+
+  if (pathname === "/") {
       await serveStatic(req, res, "/index.html");
       return;
     }
