@@ -1250,6 +1250,18 @@ a {
   font-family: "Manrope", "Noto Sans SC", system-ui, sans-serif;
 }
 
+.chinese-stage .stage-screen {
+  background:
+    linear-gradient(180deg, rgba(62, 22, 22, 0.96), rgba(166, 64, 36, 0.88)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 30%);
+}
+
+.chinese-board .avatar-core {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
+    rgba(255, 255, 255, 0.04);
+}
+
 .integration-api {
   padding-top: 24px;
 }
