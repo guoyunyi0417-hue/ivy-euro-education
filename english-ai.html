@@ -398,12 +398,75 @@
               这些内容已经被整理成可调用的知识库条目，课堂示范、跟读纠错和对话练习都会优先检索对应来源，保证内容稳定、口径一致。
             </p>
           </div>
-          <div class="band-list">
-            <div class="band-item"><strong>Plain text</strong><span>可直接导入为自定义课程内容、讲义和练习文本。</span></div>
-            <div class="band-item"><strong>Oxford</strong><span>作为英语阅读、词汇与表达的权威知识条目。</span></div>
-            <div class="band-item"><strong>Cambridge</strong><span>作为分级、题型和标准化训练的知识条目。</span></div>
-            <div class="band-item"><strong>Reach Higher</strong><span>作为课堂体系、阅读写作与综合提升的知识条目。</span></div>
-            <div class="band-item"><strong>美国学校教材</strong><span>作为本地化英语学习和学校同步内容的知识条目。</span></div>
+            <div class="band-list">
+              <div class="band-item"><strong>Plain text</strong><span>可直接导入为自定义课程内容、讲义和练习文本。</span></div>
+              <div class="band-item"><strong>Oxford</strong><span>作为英语阅读、词汇与表达的权威知识条目。</span></div>
+              <div class="band-item"><strong>Cambridge</strong><span>作为分级、题型和标准化训练的知识条目。</span></div>
+              <div class="band-item"><strong>Reach Higher</strong><span>作为课堂体系、阅读写作与综合提升的知识条目。</span></div>
+              <div class="band-item"><strong>美国学校教材</strong><span>作为本地化英语学习和学校同步内容的知识条目。</span></div>
+            </div>
+        </section>
+
+        <section class="section tutor-functions" id="english-ai-functions">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">功能引擎</span>
+              <h2>六个能力都能落到同一个 AI 英语老师上</h2>
+              <p>
+                这六个按钮不是文案，而是同一个导师的六种工作模式。点开后，知识库检索逻辑、回答结构和示范内容都会跟着切换。
+              </p>
+            </div>
+          </div>
+
+          <div class="function-grid">
+            <article class="info-card function-card is-active" data-tutor-card="plain-text">
+              <div class="card-head">
+                <span class="card-tag">Plain text</span>
+                <h3>导入文本</h3>
+              </div>
+              <p>把教材、讲义、练习变成可直接讲解和复练的内容。</p>
+              <button class="button button-secondary" type="button" data-tutor-mode="plain-text">切换到这项功能</button>
+            </article>
+            <article class="info-card function-card" data-tutor-card="dialogue">
+              <div class="card-head">
+                <span class="card-tag">对话</span>
+                <h3>情景问答</h3>
+              </div>
+              <p>围绕学校、生活、旅行等场景做角色扮演和追问。</p>
+              <button class="button button-secondary" type="button" data-tutor-mode="dialogue">切换到这项功能</button>
+            </article>
+            <article class="info-card function-card" data-tutor-card="correction">
+              <div class="card-head">
+                <span class="card-tag">纠错</span>
+                <h3>句子纠错</h3>
+              </div>
+              <p>把错误句子改成更自然的英语，并解释为什么要这样改。</p>
+              <button class="button button-secondary" type="button" data-tutor-mode="correction">切换到这项功能</button>
+            </article>
+            <article class="info-card function-card" data-tutor-card="pronunciation">
+              <div class="card-head">
+                <span class="card-tag">发音</span>
+                <h3>发音示范</h3>
+              </div>
+              <p>按音节、重音、语调给出可跟读的发音示范。</p>
+              <button class="button button-secondary" type="button" data-tutor-mode="pronunciation">切换到这项功能</button>
+            </article>
+            <article class="info-card function-card" data-tutor-card="essay">
+              <div class="card-head">
+                <span class="card-tag">作文</span>
+                <h3>写作批改</h3>
+              </div>
+              <p>先出提纲，再给示范段落，最后润色连接词和表达。</p>
+              <button class="button button-secondary" type="button" data-tutor-mode="essay">切换到这项功能</button>
+            </article>
+            <article class="info-card function-card" data-tutor-card="reading">
+              <div class="card-head">
+                <span class="card-tag">阅读</span>
+                <h3>阅读理解</h3>
+              </div>
+              <p>抓主旨、找细节、提关键词，再给可练的阅读题。</p>
+              <button class="button button-secondary" type="button" data-tutor-mode="reading">切换到这项功能</button>
+            </article>
           </div>
         </section>
 
@@ -449,12 +512,24 @@
                 <span class="card-tag">Knowledge Ask</span>
                 <h3>输入问题，AI 英语老师自动调用知识库</h3>
               </div>
+              <div class="tutor-active-mode" id="english-active-mode">
+                <strong>当前功能：对话</strong>
+                <span>先做情景问答，再输出角色对白和追问。</span>
+              </div>
               <label class="tutor-label" for="english-ai-question">你可以直接问：</label>
               <textarea id="english-ai-question" class="tutor-input" placeholder="例如：怎么帮小学三年级学生练英语阅读和口语？"></textarea>
               <div class="prompt-sample-row" aria-label="示例问题">
                 <button class="prompt-sample" type="button" data-sample-query="怎么帮小学三年级学生练英语阅读和口语？">小学阅读 + 口语</button>
                 <button class="prompt-sample" type="button" data-sample-query="学生总是发音拖尾，应该怎么纠正？">发音纠错</button>
                 <button class="prompt-sample" type="button" data-sample-query="怎样把学校里的英语课本和课后练习串起来？">学校同步</button>
+              </div>
+              <div class="tutor-mode-row tutor-mode-row-inline" aria-label="功能切换">
+                <button class="tutor-mode is-active" type="button" data-tutor-mode="dialogue">对话</button>
+                <button class="tutor-mode" type="button" data-tutor-mode="correction">纠错</button>
+                <button class="tutor-mode" type="button" data-tutor-mode="pronunciation">发音</button>
+                <button class="tutor-mode" type="button" data-tutor-mode="essay">作文</button>
+                <button class="tutor-mode" type="button" data-tutor-mode="reading">阅读</button>
+                <button class="tutor-mode" type="button" data-tutor-mode="plain-text">Plain text</button>
               </div>
               <div class="tutor-actions">
                 <button class="button button-primary" type="button" data-english-ai-ask>调用知识库回答</button>

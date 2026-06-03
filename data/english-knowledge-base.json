@@ -46,6 +46,92 @@
       "keywords": ["美国", "学校", "教材", "同步", "课堂", "口语", "日常", "school", "textbook"]
     }
   ],
+  "modes": [
+    {
+      "id": "plain-text",
+      "label": "Plain text",
+      "title": "导入教材 / 讲义 / 练习文本",
+      "summary": "把外部文本整理成课堂讲解、练习和复习任务。",
+      "promptHint": "适合上传讲义、课文、练习或自定义文本，让 AI 先整理再讲解。",
+      "preferredSources": ["plain-text"],
+      "sampleQuestions": [
+        "把这段讲义整理成课堂要点",
+        "把这份练习变成三步练习",
+        "把这段教材总结成 5 个词汇"
+      ],
+      "outputStyle": "摘要 + 可讲解要点 + 下一步"
+    },
+    {
+      "id": "dialogue",
+      "label": "对话",
+      "title": "情景对话练习",
+      "summary": "围绕课堂、生活和学校场景进行问答与追问。",
+      "promptHint": "适合练习问答、角色扮演和完整句输出。",
+      "preferredSources": ["us-textbook", "plain-text"],
+      "sampleQuestions": [
+        "请和学生做一个校园点餐对话",
+        "请模拟老师和学生的自我介绍",
+        "请练习一个去图书馆的对话"
+      ],
+      "outputStyle": "角色对白 + 追问 + 复述"
+    },
+    {
+      "id": "correction",
+      "label": "纠错",
+      "title": "语法与表达纠错",
+      "summary": "把学生输入修正成更自然、更准确的英语。",
+      "promptHint": "适合批改句子、找语法问题、改表达。",
+      "preferredSources": ["cambridge", "plain-text"],
+      "sampleQuestions": [
+        "I go school yesterday. 帮我纠错",
+        "He don't like apples. 帮我改正",
+        "This sentence has grammar mistakes, please fix it"
+      ],
+      "outputStyle": "原句 + 修改句 + 错误说明"
+    },
+    {
+      "id": "pronunciation",
+      "label": "发音",
+      "title": "发音与语调示范",
+      "summary": "聚焦音节、重音、连读和语调，让学生听完就能跟。",
+      "promptHint": "适合练发音、口型、重音和句子节奏。",
+      "preferredSources": ["cambridge", "us-textbook"],
+      "sampleQuestions": [
+        "how do you pronounce 'th'?",
+        "请示范 better 和 butter 的区别",
+        "我想练 this, think, these 的发音"
+      ],
+      "outputStyle": "发音提示 + 口型建议 + 跟读句"
+    },
+    {
+      "id": "essay",
+      "label": "作文",
+      "title": "作文结构与润色",
+      "summary": "从立意、结构、连接词到完整段落输出。",
+      "promptHint": "适合写段落、写短文、做作文提纲和润色。",
+      "preferredSources": ["reach-higher", "plain-text"],
+      "sampleQuestions": [
+        "写一段关于我学校的英语作文",
+        "帮我把这篇作文改得更有逻辑",
+        "给我一个关于旅行的段落提纲"
+      ],
+      "outputStyle": "提纲 + 示例段落 + 连接词"
+    },
+    {
+      "id": "reading",
+      "label": "阅读",
+      "title": "阅读理解与词汇",
+      "summary": "帮助学生抓主旨、找细节、理解词汇和句子关系。",
+      "promptHint": "适合阅读理解、词汇拓展和短文分析。",
+      "preferredSources": ["oxford", "cambridge", "reach-higher"],
+      "sampleQuestions": [
+        "帮我分析这篇阅读的主旨",
+        "这篇文章里有哪些关键词",
+        "给我一个阅读理解训练"
+      ],
+      "outputStyle": "主旨 + 关键词 + 题目"
+    }
+  ],
   "demoQuestions": [
     "怎么帮小学三年级学生练英语阅读和口语？",
     "学生总是发音拖尾，应该怎么纠正？",
