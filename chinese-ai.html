@@ -465,6 +465,70 @@
           </div>
         </section>
 
+        <section class="section pronunciation-lab" id="chinese-pronunciation-lab">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">发音评测实验室</span>
+              <h2>把中文朗读、拼音和句子节奏做成可重复练习的课堂模块</h2>
+              <p>
+                这里会先读参考句，再把学生朗读内容送进评测流程。后续接入正式语音评测后，可以直接看出声母、韵母、声调和连读的薄弱点。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="发音状态">
+              <span>Mandarin</span>
+              <span>Pinyin</span>
+              <span>Repeatable</span>
+            </div>
+          </div>
+
+          <div class="pronunciation-grid">
+            <article class="info-card pronunciation-setup">
+              <div class="card-head">
+                <span class="card-tag">参考句</span>
+                <h3>先读标准句，再开始评测</h3>
+              </div>
+              <label class="tutor-label" for="pronunciation-reference">朗读参考句</label>
+              <textarea id="pronunciation-reference" class="tutor-input" rows="4">请用完整句子回答：今天你最喜欢的中文课内容是什么？</textarea>
+              <div class="prompt-sample-row" aria-label="中文朗读示例">
+                <button class="prompt-sample" type="button" data-pronunciation-sample="请用完整句子回答：今天你最喜欢的中文课内容是什么？">课堂回答</button>
+                <button class="prompt-sample" type="button" data-pronunciation-sample="我喜欢认真朗读，也喜欢练习拼音。">拼音朗读</button>
+                <button class="prompt-sample" type="button" data-pronunciation-sample="请大声、清楚地读出这句话。">清晰发音</button>
+              </div>
+              <label class="tutor-label" for="pronunciation-transcript">学生朗读内容</label>
+              <textarea id="pronunciation-transcript" class="tutor-input" rows="4" placeholder="把孩子实际读出来的句子粘贴到这里，或直接用同一句做练习。"></textarea>
+              <div class="record-controls">
+                <button class="button button-primary" type="button" data-pronunciation-start>开始评测</button>
+                <button class="button button-secondary" type="button" data-pronunciation-stop>停止 / 重置</button>
+              </div>
+              <div class="pronunciation-status" data-pronunciation-status>等待开始评测。</div>
+            </article>
+
+            <article class="info-card pronunciation-score-card">
+              <div class="card-head">
+                <span class="card-tag">评分面板</span>
+                <h3>自动显示朗读结果</h3>
+              </div>
+              <div class="score-grid-pronunciation">
+                <div class="score-tile"><strong id="pronunciation-score">--</strong><span>总分</span></div>
+                <div class="score-tile"><strong id="accuracy-score">--</strong><span>准确度</span></div>
+                <div class="score-tile"><strong id="fluency-score">--</strong><span>流畅度</span></div>
+                <div class="score-tile"><strong id="completeness-score">--</strong><span>完整度</span></div>
+                <div class="score-tile"><strong id="prosody-score">--</strong><span>节奏</span></div>
+              </div>
+              <div class="pronunciation-feedback-card">
+                <div class="card-head">
+                  <span class="card-tag">反馈</span>
+                  <h3>中文朗读建议</h3>
+                </div>
+                <div class="pronunciation-feedback" id="pronunciation-feedback">
+                  <p>评测结果会显示在这里，告诉学生哪几个字词更清楚、声调哪里需要再练、下一句该怎么跟读。</p>
+                </div>
+              </div>
+              <div class="pronunciation-json" id="pronunciation-json">{"status":"waiting"}</div>
+            </article>
+          </div>
+        </section>
+
         <section class="page-footer">
           <div class="band-list">
             <div class="band-item"><strong>适合人群</strong><span>拼音不稳、阅读慢、写作弱、中文输入不足的学生。</span></div>
@@ -480,6 +544,7 @@
       </main>
     </div>
     <script src="tutor-engine.js"></script>
+    <script src="pronunciation-assessment-loader.js"></script>
     <script src="chinese-ai.js"></script>
     <script src="script.js"></script>
   </body>

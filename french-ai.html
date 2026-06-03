@@ -368,6 +368,70 @@
           </article>
         </section>
 
+        <section class="section pronunciation-lab" id="french-pronunciation-lab">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">发音评测实验室</span>
+              <h2>把法语朗读、跟读和节奏练习做成可重复练习的模块</h2>
+              <p>
+                这里会先读参考句，再把学生朗读内容送进评测流程。后续接入正式语音评测后，可以直接看出音节、连读、重音和流畅度的薄弱点。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="发音状态">
+              <span>French</span>
+              <span>Pronunciation</span>
+              <span>Repeatable</span>
+            </div>
+          </div>
+
+          <div class="pronunciation-grid">
+            <article class="info-card pronunciation-setup">
+              <div class="card-head">
+                <span class="card-tag">参考句</span>
+                <h3>先读标准句，再开始评测</h3>
+              </div>
+              <label class="tutor-label" for="pronunciation-reference">朗读参考句</label>
+              <textarea id="pronunciation-reference" class="tutor-input" rows="4">Je voudrais pratiquer le français avec une phrase complète.</textarea>
+              <div class="prompt-sample-row" aria-label="法语朗读示例">
+                <button class="prompt-sample" type="button" data-pronunciation-sample="Je voudrais pratiquer le français avec une phrase complète.">课堂练习</button>
+                <button class="prompt-sample" type="button" data-pronunciation-sample="Pouvez-vous répéter plus lentement, s'il vous plaît ?">慢一点重复</button>
+                <button class="prompt-sample" type="button" data-pronunciation-sample="Aujourd'hui, je lis la phrase à voix haute.">大声朗读</button>
+              </div>
+              <label class="tutor-label" for="pronunciation-transcript">学生朗读内容</label>
+              <textarea id="pronunciation-transcript" class="tutor-input" rows="4" placeholder="把学生实际读出来的句子粘贴到这里，或直接用同一句做练习。"></textarea>
+              <div class="record-controls">
+                <button class="button button-primary" type="button" data-pronunciation-start>开始评测</button>
+                <button class="button button-secondary" type="button" data-pronunciation-stop>停止 / 重置</button>
+              </div>
+              <div class="pronunciation-status" data-pronunciation-status>等待开始评测。</div>
+            </article>
+
+            <article class="info-card pronunciation-score-card">
+              <div class="card-head">
+                <span class="card-tag">评分面板</span>
+                <h3>自动显示朗读结果</h3>
+              </div>
+              <div class="score-grid-pronunciation">
+                <div class="score-tile"><strong id="pronunciation-score">--</strong><span>总分</span></div>
+                <div class="score-tile"><strong id="accuracy-score">--</strong><span>准确度</span></div>
+                <div class="score-tile"><strong id="fluency-score">--</strong><span>流畅度</span></div>
+                <div class="score-tile"><strong id="completeness-score">--</strong><span>完整度</span></div>
+                <div class="score-tile"><strong id="prosody-score">--</strong><span>节奏</span></div>
+              </div>
+              <div class="pronunciation-feedback-card">
+                <div class="card-head">
+                  <span class="card-tag">反馈</span>
+                  <h3>法语朗读建议</h3>
+                </div>
+                <div class="pronunciation-feedback" id="pronunciation-feedback">
+                  <p>评测结果会显示在这里，告诉学生哪几个词更清楚、连读哪里需要再练、下一句该怎么跟读。</p>
+                </div>
+              </div>
+              <div class="pronunciation-json" id="pronunciation-json">{"status":"waiting"}</div>
+            </article>
+          </div>
+        </section>
+
         <section class="page-footer">
           <div class="band-list">
             <div class="band-item"><strong>适合人群</strong><span>法语入门、基础薄弱、准备分级考试或长期提升的学习者。</span></div>
@@ -383,6 +447,7 @@
       </main>
     </div>
     <script src="tutor-engine.js"></script>
+    <script src="pronunciation-assessment-loader.js"></script>
     <script src="french-ai.js"></script>
     <script src="script.js"></script>
   </body>
