@@ -269,7 +269,7 @@
                 <h3>互动头像挂载位</h3>
               </div>
               <p>在这里嵌入 D-ID 角色，负责标准示范、提问互动和情景对话。</p>
-              <div class="code-block">embed: classroom-avatar-container</div>
+              <div class="code-block">script src="https://agent.d-id.com/v2/index.js" data-mode="full" data-target-id="did-agent-container" data-client-key="..." data-agent-id="..." data-auto-connect="true"</div>
             </article>
 
             <article class="info-card integration-slot">
@@ -307,12 +307,14 @@
                 <span class="shell-badge">Ready to Connect</span>
                 <strong>English AI Classroom</strong>
               </div>
-              <div class="shell-surface">
-                <span class="shell-orb"></span>
-                <span class="shell-orb shell-orb-alt"></span>
-                <div class="shell-screen">
-                  <strong>Interactive lesson online</strong>
-                  <span>D-ID avatar + pronunciation scoring + repeat mode</span>
+              <div class="did-agent-toolbar">
+                <button class="button button-secondary" type="button" data-did-speak-demo>播放示范</button>
+                <button class="button button-secondary" type="button" data-did-fullscreen>全屏互动</button>
+              </div>
+              <div id="did-agent-container" class="did-agent-frame" data-did-agent-container>
+                <div class="did-agent-placeholder">
+                  <strong>连接 D-ID 互动头像</strong>
+                  <span>准备好 client key 和 agent id 后，这里会直接载入可互动的英语老师。</span>
                 </div>
               </div>
             </div>
@@ -564,7 +566,16 @@
         </section>
       </main>
     </div>
+    <script>
+      window.IVY_DID_CONFIG = {
+        clientKey: "",
+        agentId: "",
+        targetId: "did-agent-container",
+        greetingText: "Hello! Let's practice English together.",
+      };
+    </script>
     <script src="tutor-engine.js"></script>
+    <script src="did-agent-loader.js"></script>
     <script src="english-ai.js"></script>
     <script src="script.js"></script>
   </body>
