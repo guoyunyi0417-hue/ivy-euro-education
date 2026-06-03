@@ -19,6 +19,41 @@
 
 直接用浏览器打开 `index.html` 即可预览。
 
+## 本地启动服务
+
+如果你要测试 AI 互动接口，建议直接启动内置静态服务器：
+
+```bash
+npm start
+```
+
+如果 8000 已被占用，服务会自动尝试下一个端口。
+
+然后打开：
+
+- `http://127.0.0.1:8000`
+- `http://127.0.0.1:8000/api/health`
+- `http://127.0.0.1:8000/api/tutor/ask`
+
+接口默认会先走本地知识库回退逻辑；如果配置了下面这些环境变量，就会自动转成 OpenAI 兼容接口代理：
+
+- `OPENAI_API_KEY`
+- `OPENAI_BASE_URL`
+- `OPENAI_MODEL`
+
+也可以使用：
+
+- `LLM_API_KEY`
+- `LLM_BASE_URL`
+- `LLM_MODEL`
+
+当前支持的接口：
+
+- `POST /api/tutor/ask`
+- `POST /api/tutor/chat`
+- `POST /api/tutor/search`
+- `POST /api/tutor/feedback`
+
 ## 云上开发建议
 
 1. 把当前目录推到 GitHub 仓库

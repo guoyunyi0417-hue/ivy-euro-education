@@ -1,9 +1,15 @@
 function createKnowledgeTutor(config) {
   const fallbackKnowledgeBase = config.fallbackKnowledgeBase;
   const selectors = config.selectors;
+  const cardAttr = config.cardAttr || "data-tutor-card";
+  const remoteApiEnabled = config.remoteApiEnabled !== false;
+  const apiEndpoint = config.apiEndpoint || "/api/tutor/ask";
+
   const state = {
     knowledgeBase: fallbackKnowledgeBase,
     activeModeId: config.defaultModeId || fallbackKnowledgeBase.modes?.[0]?.id || "dialogue",
+    isLoading: false,
+    lastQuestion: "",
   };
 
   const questionField = document.querySelector(selectors.questionField);
@@ -66,7 +72,7 @@ function createKnowledgeTutor(config) {
     return top.length ? top : state.knowledgeBase.sources.slice(0, 3);
   }
 
-  function buildTutorReply(question, sources, mode) {
+  function buildLocalReply(question, sources, mode) {
     const normalized = normalizeText(question);
     const sourceNames = sources.map((source) => source.name).join("、");
     const modeLabel = mode?.label || "对话";
@@ -112,26 +118,40 @@ function createKnowledgeTutor(config) {
     };
   }
 
-  function renderAnswer(question) {
-    const mode = getMode(state.activeModeId);
-    const sources = getTopSources(question, mode);
-    const reply = buildTutorReply(question, sources, mode);
+  function normalizeRemoteReply(payload, fallbackReply) {
+    if (!payload) return null;
 
+    const reply = payload.reply || payload.result || payload.data || payload;
+    const body = Array.isArray(reply.body)
+      ? reply.body
+      : typeof reply.body === "string"
+        ? reply.body.split(/\n+/).map((line) => line.trim()).filter(Boolean)
+        : typeof reply.text === "string"
+          ? reply.text.split(/\n+/).map((line) => line.trim()).filter(Boolean)
+          : fallbackReply.body;
+
+    const sources = Array.isArray(reply.sources) && reply.sources.length
+      ? reply.sources
+      : fallbackReply.sources;
+
+    return {
+      title: reply.title || fallbackReply.title,
+      body: body.length ? body : fallbackReply.body,
+      sources,
+    };
+  }
+
+  function renderReply(reply, mode) {
     if (answerBox) {
       answerBox.innerHTML = `
         <strong>${reply.title}</strong>
-        <p>${reply.body[0]}</p>
-        <p>${reply.body[1]}</p>
-        <p>${reply.body[2]}</p>
-        <p>${reply.body[3]}</p>
-        <p>${reply.body[4]}</p>
-        <p>${reply.body[5]}</p>
+        ${reply.body.map((line) => `<p>${line}</p>`).join("")}
       `;
     }
 
     if (sourceRow) {
-      sourceRow.innerHTML = sources
-        .map((source) => `<span class="tutor-source-chip">${source.name}</span>`)
+      sourceRow.innerHTML = (reply.sources || [])
+        .map((source) => `<span class="tutor-source-chip">${source.name || source.id}</span>`)
         .join("");
     }
 
@@ -148,12 +168,22 @@ function createKnowledgeTutor(config) {
     });
 
     functionCards.forEach((card) => {
-      card.classList.toggle("is-active", card.getAttribute(config.cardAttr) === mode.id);
+      card.classList.toggle("is-active", card.getAttribute(cardAttr) === mode.id);
     });
 
     if (questionField && mode.sampleQuestions?.length && !questionField.value.trim()) {
       questionField.placeholder = mode.sampleQuestions[0];
     }
+  }
+
+  function renderLoading(message) {
+    if (!answerBox) return;
+    answerBox.innerHTML = `<strong>${config.tutorName}</strong><p>${message}</p>`;
+    answerBox.classList.add("is-loading");
+  }
+
+  function clearLoading() {
+    answerBox?.classList.remove("is-loading");
   }
 
   function renderKnowledgeBase() {
@@ -213,6 +243,71 @@ function createKnowledgeTutor(config) {
     });
   }
 
+  function buildApiPayload(question, mode) {
+    const sources = getTopSources(question, mode);
+    return {
+      tutorName: config.tutorName,
+      question,
+      mode: {
+        id: mode.id,
+        label: mode.label,
+        title: mode.title,
+        promptHint: mode.promptHint,
+        outputStyle: mode.outputStyle,
+      },
+      knowledgeBase: state.knowledgeBase,
+      topSources: sources,
+      defaults: {
+        focus: config.defaultFocus,
+        nextStep: config.defaultNextStep,
+        example: config.defaultExample,
+        extra: config.defaultExtra,
+      },
+    };
+  }
+
+  async function fetchRemoteReply(question, mode) {
+    if (!remoteApiEnabled || !apiEndpoint) {
+      return null;
+    }
+
+    const fallbackReply = buildLocalReply(question, getTopSources(question, mode), mode);
+
+    try {
+      const response = await fetch(apiEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(buildApiPayload(question, mode)),
+      });
+
+      if (!response.ok) {
+        throw new Error(`API request failed with ${response.status}`);
+      }
+
+      const data = await response.json();
+      return normalizeRemoteReply(data, fallbackReply);
+    } catch (error) {
+      console.warn(`Using local tutor reply for ${config.tutorName}.`, error);
+      return null;
+    }
+  }
+
+  async function renderAnswer(question) {
+    const mode = getMode(state.activeModeId);
+    const cleanedQuestion = question?.trim() || mode.sampleQuestions?.[0] || state.knowledgeBase.demoQuestions?.[0] || config.defaultQuestion;
+
+    state.lastQuestion = cleanedQuestion;
+    renderLoading("正在检索知识库并生成回答...");
+
+    const localReply = buildLocalReply(cleanedQuestion, getTopSources(cleanedQuestion, mode), mode);
+    const remoteReply = await fetchRemoteReply(cleanedQuestion, mode);
+
+    clearLoading();
+    renderReply(remoteReply || localReply, mode);
+  }
+
   async function loadKnowledgeBase() {
     if (config.knowledgeBaseUrl) {
       try {
@@ -254,7 +349,7 @@ function createKnowledgeTutor(config) {
       activeModeHint.textContent = defaultMode.promptHint;
     }
 
-    renderAnswer(initialQuestion);
+    await renderAnswer(initialQuestion);
   }
 
   askButton?.addEventListener("click", () => {
