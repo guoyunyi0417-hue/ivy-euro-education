@@ -319,6 +319,77 @@
           </div>
         </section>
 
+        <section class="section integration-api">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">接入蓝图</span>
+              <h2>前端、互动角色、发音评测和反馈面板分层接入</h2>
+              <p>
+                这不是临时拼出来的效果页，而是后续真正接 D-ID 和语音评测时可以沿用的产品结构。
+              </p>
+            </div>
+          </div>
+
+          <div class="integration-api-grid">
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 01</span>
+                <h3>前端课堂页</h3>
+              </div>
+              <p>负责展示课程目标、示范句、按钮入口和反馈结果，是用户实际看到的页面。</p>
+              <div class="code-block">/english-ai.html</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 02</span>
+                <h3>D-ID 互动角色</h3>
+              </div>
+              <p>负责标准示范、情景对话、提问互动和“先听再说”的课堂动作。</p>
+              <div class="code-block">POST /d-id/agent / session</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 03</span>
+                <h3>发音评测引擎</h3>
+              </div>
+              <p>负责接收学生语音，输出准确度、流畅度、语调、重音和漏读提醒。</p>
+              <div class="code-block">score: pronunciation + fluency + prosody</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 04</span>
+                <h3>反馈与复练</h3>
+              </div>
+              <p>把评测结果转成可读建议，再把学生带回练习入口形成闭环。</p>
+              <div class="code-block">repeat → correct → re-check</div>
+            </article>
+          </div>
+
+          <article class="info-card api-spec-card">
+            <div class="card-head">
+              <span class="card-tag">示意数据</span>
+              <h3>一次完整互动的大致返回结构</h3>
+            </div>
+            <div class="api-spec-grid">
+              <div>
+                <p class="api-spec-label">学生输入</p>
+                <div class="code-block">{"text":"Can you say that again?","voice":"student"}</div>
+              </div>
+              <div>
+                <p class="api-spec-label">系统返回</p>
+                <div class="code-block">{"pronunciation":86,"fluency":78,"intonation":"good","next":"repeat"}</div>
+              </div>
+              <div>
+                <p class="api-spec-label">前端展示</p>
+                <div class="code-block">示范句 / 错音提示 / 再练按钮 / 完成状态</div>
+              </div>
+            </div>
+          </article>
+        </section>
+
         <section class="page-footer">
           <div class="band-list">
             <div class="band-item"><strong>适合人群</strong><span>需要开口练习、跟读示范、发音纠错的英语学习者。</span></div>

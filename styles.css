@@ -1228,6 +1228,43 @@ a {
   line-height: 1.7;
 }
 
+.integration-api {
+  padding-top: 24px;
+}
+
+.integration-api-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.api-step-card {
+  display: grid;
+  gap: 14px;
+}
+
+.api-spec-card {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.api-spec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.api-spec-label {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
 .score-tile {
   display: grid;
   gap: 8px;
@@ -1611,6 +1648,11 @@ a.info-card:focus-visible {
 
   .integration-grid,
   .integration-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .integration-api-grid,
+  .api-spec-grid {
     grid-template-columns: 1fr;
   }
 
