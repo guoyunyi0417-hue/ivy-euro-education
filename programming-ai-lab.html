@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>编程 AI 互动练习 | IvyEuro Education</title>
+    <meta
+      name="description"
+      content="IvyEuro Education 编程 AI 互动练习页，面向项目思维、Python、工具使用和作品复盘，后续可接入 AI 教练与项目反馈能力。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="index.html"><span class="brand-mark">IE</span><span class="brand-text"><strong>IvyEuro Education</strong><small>Online School · Barcelona</small></span></a>
+        <button class="menu-button" type="button" aria-label="展开导航" data-menu-button><span></span><span></span><span></span></button>
+        <nav class="nav" data-nav>
+          <a href="index.html">首页</a><a href="courses.html">课程详情</a><a href="outcomes.html">课程成果</a><a href="services.html">服务项目</a><a href="about.html">关于我们</a><a href="team.html">老师简介</a><a href="schedule.html">课程表</a><a href="testimonials.html">家长好评</a><a href="news.html">新闻动态</a><a href="contact.html">联系我们</a>
+        </nav>
+        <a class="topbar-cta" href="contact.html">Get in Touch</a>
+      </header>
+
+      <main>
+        <section class="subpage-hero subpage-hero-split">
+          <div class="hero-copy-block">
+            <span class="section-kicker">编程 AI 互动练习</span>
+            <h1>让学生从“会点工具”变成“会拆问题、会做项目、会复盘”</h1>
+            <p>
+              这个页面是编程 AI 课程的互动入口，后续可以接入项目演示、步骤反馈和作品复盘，让学生真正把思维和动手能力练出来。
+            </p>
+          </div>
+          <div class="hero-panel hero-panel-compact">
+            <div class="micro-metrics">
+              <div class="metric-card"><strong>互动方式</strong><span>项目演示、步骤检查、工具应用、作品复盘</span></div>
+              <div class="metric-card"><strong>练习重点</strong><span>逻辑、代码、AI 工具、表达输出</span></div>
+              <div class="metric-card"><strong>接入方向</strong><span>AI 教练 + 项目反馈 + 再做一版</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section ai-studio">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">课堂界面</span>
+              <h2>把编程练习区做成一个可以直接做项目的工作台</h2>
+              <p>
+                左边负责演示，右边负责写步骤、看反馈和做复盘。后续接入 AI 教练和项目评测后，这一屏就能直接变成完整的编程互动课堂。
+              </p>
+            </div>
+            <div class="studio-status" aria-label="课堂状态">
+              <span>Project Flow</span>
+              <span>Code Check</span>
+              <span>Review Loop</span>
+            </div>
+          </div>
+
+          <div class="classroom-grid">
+            <article class="classroom-stage programming-stage">
+              <div class="stage-screen">
+                <div class="stage-topline">
+                  <span class="live-pill">● AI Teacher</span>
+                  <span class="stage-title">Today’s project: Build a tiny todo app</span>
+                </div>
+                <div class="avatar-stage programming-board">
+                  <div class="avatar-core">
+                    <strong>Project Board</strong>
+                    <span>Interactive coding and planning area</span>
+                  </div>
+                </div>
+                <p class="stage-caption">
+                  这里后续可嵌入编程 AI 互动角色，支持项目演示、代码讲解、步骤检查和作品复盘。
+                </p>
+              </div>
+              <div class="practice-toolbar">
+                <a class="button button-primary" href="contact.html">开始做项目</a>
+                <a class="button button-secondary" href="contact.html">检查代码</a>
+                <a class="button button-secondary" href="contact.html">查看示范</a>
+                <a class="button button-secondary" href="contact.html">再做一版</a>
+              </div>
+            </article>
+
+            <aside class="classroom-side">
+              <article class="info-card practice-console">
+                <div class="card-head">
+                  <span class="card-tag">今日练习</span>
+                  <h3>从想法到项目</h3>
+                </div>
+                <ol class="detail-list">
+                  <li>先看项目目标和功能列表。</li>
+                  <li>把功能拆成可执行的小步骤。</li>
+                  <li>写出代码或流程，完成第一版。</li>
+                  <li>复盘结果，再迭代第二版。</li>
+                </ol>
+                <div class="prompt-chip-row" aria-label="练习提示">
+                  <span class="prompt-chip">Plan</span>
+                  <span class="prompt-chip">Code</span>
+                  <span class="prompt-chip">Check</span>
+                </div>
+              </article>
+
+              <article class="info-card feedback-panel">
+                <div class="card-head">
+                  <span class="card-tag">即时反馈</span>
+                  <h3>四项指标同步显示</h3>
+                </div>
+                <div class="score-grid">
+                  <div class="score-tile">
+                    <strong>Logic</strong>
+                    <span>思路是否清楚、完整</span>
+                  </div>
+                  <div class="score-tile">
+                    <strong>Code</strong>
+                    <span>代码是否正确、可运行</span>
+                  </div>
+                  <div class="score-tile">
+                    <strong>Tool</strong>
+                    <span>AI 工具是否用对</span>
+                  </div>
+                  <div class="score-tile">
+                    <strong>Review</strong>
+                    <span>作品复盘和迭代是否到位</span>
+                  </div>
+                </div>
+                <p class="panel-note">后续接口码检查和项目反馈后，这一层就能直接输出优化建议和复练任务。</p>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section practice-workbench">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">今日脚本</span>
+              <h2>每一次练习都做成“拆解 - 编码 - 检查 - 复盘”的闭环</h2>
+              <p>
+                这里不是单纯的代码片段，而是可以直接拿来做课堂演示的编程工作台。后续接上 AI 教练后，老师和学生都能看懂下一步该做什么。
+              </p>
+            </div>
+          </div>
+
+          <div class="workbench-grid">
+            <article class="info-card workbench-script">
+              <div class="card-head">
+                <span class="card-tag">Script 01</span>
+                <h3>示范项目：Tiny Todo App</h3>
+              </div>
+              <div class="script-flow">
+                <div class="script-step">
+                  <span>AI 示范</span>
+                  <strong>先做“添加任务”功能，再做“删除任务”功能。</strong>
+                  <p>先把项目拆成最小可运行版本，再逐步补功能。</p>
+                </div>
+                <div class="script-step">
+                  <span>学生回答</span>
+                  <strong>先写结构，再连交互。</strong>
+                  <p>学生自己列步骤并完成第一版，系统记录是否完整。</p>
+                </div>
+                <div class="script-step">
+                  <span>纠错提示</span>
+                  <strong>先保证能运行，再追求好看。</strong>
+                  <p>如果顺序错了，系统会提示回到最小可运行版本。</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="info-card workbench-console">
+              <div class="card-head">
+                <span class="card-tag">Console</span>
+                <h3>课堂实时反馈面板</h3>
+              </div>
+              <div class="console-panel">
+                <div class="console-row">
+                  <span class="console-label">输入内容</span>
+                  <strong>Build a tiny todo app</strong>
+                </div>
+                <div class="console-row">
+                  <span class="console-label">系统建议</span>
+                  <strong>先分功能，再写代码，最后检查运行结果。</strong>
+                </div>
+                <div class="console-row">
+                  <span class="console-label">下一步</span>
+                  <strong>再做一版，加入筛选或保存功能。</strong>
+                </div>
+              </div>
+              <div class="prompt-chip-row prompt-chip-row-alt">
+                <span class="prompt-chip">Plan</span>
+                <span class="prompt-chip">Build</span>
+                <span class="prompt-chip">Check</span>
+                <span class="prompt-chip">Iterate</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="feature-band">
+          <div class="band-copy">
+            <span class="section-kicker">练习逻辑</span>
+            <h2>先让学生看见流程，再让系统检查项目和代码是否到位</h2>
+            <p>
+              编程最容易卡在“有想法但不会拆、不敢写、不会查错”。这个页面就是为这种学习场景准备的：先拆项目，再写代码，再检查，再复盘。
+            </p>
+          </div>
+          <div class="band-list">
+            <div class="band-item"><strong>拆项目</strong><span>先把目标变成清楚的步骤。</span></div>
+            <div class="band-item"><strong>写代码</strong><span>再把步骤写成可运行结果。</span></div>
+            <div class="band-item"><strong>做复盘</strong><span>最后检查问题并迭代优化。</span></div>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <article class="info-card course-card">
+            <div class="card-head"><span class="card-tag">场景 1</span><h3>项目拆解</h3></div>
+            <p>让 AI 帮学生把项目拆成小步骤，避免一上来就不知道从哪开始。</p>
+          </article>
+          <article class="info-card course-card">
+            <div class="card-head"><span class="card-tag">场景 2</span><h3>代码练习</h3></div>
+            <p>围绕 Python 和基础逻辑，帮助学生把想法变成能运行的代码。</p>
+          </article>
+          <article class="info-card course-card">
+            <div class="card-head"><span class="card-tag">场景 3</span><h3>作品复盘</h3></div>
+            <p>通过反馈和再做一版，把项目、表达和工具使用都练顺。</p>
+          </article>
+        </section>
+
+        <section class="section integration-kit">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">集成示例</span>
+              <h2>把编程页留成可以挂项目演示和代码反馈的位置</h2>
+              <p>
+                这一块保留了“项目入口、代码反馈、工具建议、复盘入口”的接口位置，等正式接编程 AI 时，前端结构基本不用改。
+              </p>
+            </div>
+          </div>
+
+          <div class="integration-grid">
+            <article class="info-card integration-slot">
+              <div class="card-head">
+                <span class="card-tag">Slot 01</span>
+                <h3>项目入口</h3>
+              </div>
+              <p>在这里嵌入项目演示，负责目标拆解、功能列表和起步步骤。</p>
+              <div class="code-block">embed: programming-project-container</div>
+            </article>
+
+            <article class="info-card integration-slot">
+              <div class="card-head">
+                <span class="card-tag">Slot 02</span>
+                <h3>代码反馈</h3>
+              </div>
+              <p>学生完成代码后，在这里输出逻辑、语法和运行反馈。</p>
+              <div class="code-block">api: code-feedback-engine</div>
+            </article>
+
+            <article class="info-card integration-slot">
+              <div class="card-head">
+                <span class="card-tag">Slot 03</span>
+                <h3>复盘建议</h3>
+              </div>
+              <p>把反馈结果转成可读建议，再把学生带回练习入口形成闭环。</p>
+              <div class="code-block">ui: programming-feedback-panel</div>
+            </article>
+          </div>
+
+          <div class="integration-shell">
+            <div class="integration-shell-copy">
+              <span class="section-kicker">页面工作流</span>
+              <h3>从打开页面到完成一次互动，只需要四步</h3>
+              <ol class="detail-list">
+                <li>先看 AI 角色示范一个项目。</li>
+                <li>学生点击按钮开始拆项目或写代码。</li>
+                <li>系统给出逻辑、代码和工具反馈。</li>
+                <li>学生按提示再做一版，直到稳定通过。</li>
+              </ol>
+            </div>
+            <div class="integration-shell-panel">
+              <div class="shell-header">
+                <span class="shell-badge">Ready to Connect</span>
+                <strong>Programming AI Classroom</strong>
+              </div>
+              <div class="shell-surface">
+                <span class="shell-orb"></span>
+                <span class="shell-orb shell-orb-alt"></span>
+                <div class="shell-screen">
+                  <strong>Project thinking and coding practice</strong>
+                  <span>Project demo + code feedback + repeat mode</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section integration-api">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker">接入蓝图</span>
+              <h2>前端、项目演示、代码反馈和复盘面板分层接入</h2>
+              <p>
+                这不是临时拼出来的效果页，而是后续真正接编程 AI 时可以沿用的产品结构。
+              </p>
+            </div>
+          </div>
+
+          <div class="integration-api-grid">
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 01</span>
+                <h3>前端练习页</h3>
+              </div>
+              <p>负责展示项目示范、按钮入口、反馈结果和复盘入口，是用户实际看到的页面。</p>
+              <div class="code-block">/programming-ai-lab.html</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 02</span>
+                <h3>项目演示引擎</h3>
+              </div>
+              <p>负责示范项目思路、拆解步骤和关键实现路径。</p>
+              <div class="code-block">POST /programming/explain / session</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 03</span>
+                <h3>代码反馈引擎</h3>
+              </div>
+              <p>负责接收学生代码或思路，输出逻辑、语法和运行提醒。</p>
+              <div class="code-block">score: logic + code + tool</div>
+            </article>
+
+            <article class="info-card api-step-card">
+              <div class="card-head">
+                <span class="card-tag">Layer 04</span>
+                <h3>反馈与复盘</h3>
+              </div>
+              <p>把反馈结果转成可读建议，再把学生带回练习入口形成闭环。</p>
+              <div class="code-block">repeat → correct → re-check</div>
+            </article>
+          </div>
+
+          <article class="info-card api-spec-card">
+            <div class="card-head">
+              <span class="card-tag">示意数据</span>
+              <h3>一次完整互动的大致返回结构</h3>
+            </div>
+            <div class="api-spec-grid">
+              <div>
+                <p class="api-spec-label">学生输入</p>
+                <div class="code-block">{"project":"tiny todo app","code":"..."} </div>
+              </div>
+              <div>
+                <p class="api-spec-label">系统返回</p>
+                <div class="code-block">{"logic":86,"code":82,"tool":"good","next":"repeat"}</div>
+              </div>
+              <div>
+                <p class="api-spec-label">前端展示</p>
+                <div class="code-block">项目示范 / 代码建议 / 复盘按钮 / 完成状态</div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="page-footer">
+          <div class="band-list">
+            <div class="band-item"><strong>适合人群</strong><span>零基础、兴趣型、想提前接触 AI 和数字技能的学习者。</span></div>
+            <div class="band-item"><strong>常见变化</strong><span>更愿意动手、思路更清楚、工具使用更熟练。</span></div>
+            <div class="band-item"><strong>下一步</strong><span>接入项目和代码反馈后即可上线试用。</span></div>
+          </div>
+          <div class="section-link-row">
+            <a class="button button-secondary" href="programming-ai.html">返回编程 AI 课程</a>
+            <a class="button button-secondary" href="courses.html">返回课程详情</a>
+            <a class="button button-primary" href="contact.html">咨询编程 AI 互动</a>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

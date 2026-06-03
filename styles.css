@@ -1274,6 +1274,30 @@ a {
     rgba(255, 255, 255, 0.04);
 }
 
+.french-stage .stage-screen {
+  background:
+    linear-gradient(180deg, rgba(46, 28, 81, 0.96), rgba(116, 72, 168, 0.9)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 30%);
+}
+
+.french-board .avatar-core {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
+    rgba(255, 255, 255, 0.04);
+}
+
+.programming-stage .stage-screen {
+  background:
+    linear-gradient(180deg, rgba(10, 24, 22, 0.96), rgba(16, 122, 108, 0.88)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 30%);
+}
+
+.programming-board .avatar-core {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
+    rgba(255, 255, 255, 0.04);
+}
+
 .integration-api {
   padding-top: 24px;
 }
