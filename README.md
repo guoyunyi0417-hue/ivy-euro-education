@@ -9,11 +9,14 @@
 - `about.html`：关于我们页
 - `team.html`：老师简介页
 - `schedule.html`：课程表页
+- `lesson-builder.html`：AI 课程生成器页
 - `testimonials.html`：家长好评页
 - `news.html`：新闻动态页
 - `contact.html`：联系我们页
 - `styles.css`：页面样式
 - `script.js`：导航与表单交互
+- `lesson-builder.js`：AI Lesson Builder 前端交互
+- `PRODUCT_STRATEGY.md`：Ivy AI Teacher / AI Teacher OS 产品聚焦与路线
 
 ## 本地预览
 
@@ -80,6 +83,7 @@ npm start
 - `POST /api/tutor/chat`
 - `POST /api/tutor/search`
 - `POST /api/tutor/feedback`
+- `POST /api/lesson-builder/generate`
 - `GET /api/runtime-config`
 - `POST /api/liveavatar/embed`
 - `POST /api/speech/token`
@@ -97,3 +101,5 @@ npm start
 - 已完成首页视觉重设计
 - 已适配移动端
 - 已准备好进入云上协作流程
+- 已加入 `AI Lesson Builder` 第一版，可在无 API 时生成本地课程包
+- 已预留 OpenAI-compatible / LLM 接口，用环境变量接入模型，不要把 API Key 写进代码或文档

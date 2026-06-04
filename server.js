@@ -363,6 +363,167 @@ async function handleTutorSearch(payload) {
   };
 }
 
+function normalizeLessonBuilderPayload(payload = {}) {
+  const outputTypes = Array.isArray(payload.outputTypes) && payload.outputTypes.length
+    ? payload.outputTypes
+    : ["lessonPlan", "slides", "quiz", "homework", "rubric", "audio"];
+
+  return {
+    age: payload.age || "10-12",
+    grade: payload.grade || "Grade 5",
+    subject: payload.subject || "English",
+    topic: payload.topic || "Reading and speaking practice",
+    duration: payload.duration || "45",
+    curriculum: payload.curriculum || "International school",
+    level: payload.level || "Mixed level",
+    language: payload.language || "Chinese",
+    objective: payload.objective || "Help students understand the topic, practice actively, and produce one measurable output.",
+    outputTypes,
+  };
+}
+
+function buildLessonBuilderFallback(payload = {}) {
+  const spec = normalizeLessonBuilderPayload(payload);
+  const duration = Number(spec.duration) || 45;
+  const warmup = Math.max(5, Math.round(duration * 0.12));
+  const input = Math.max(10, Math.round(duration * 0.28));
+  const practice = Math.max(12, Math.round(duration * 0.34));
+  const output = Math.max(8, duration - warmup - input - practice);
+  const subjectLabel = spec.subject;
+  const topicLabel = spec.topic;
+
+  const result = {
+    meta: {
+      title: `${subjectLabel}: ${topicLabel}`,
+      age: spec.age,
+      grade: spec.grade,
+      duration: `${duration} minutes`,
+      curriculum: spec.curriculum,
+      level: spec.level,
+      objective: spec.objective,
+    },
+    lessonPlan: [
+      {
+        time: `0-${warmup} min`,
+        stage: "Warm-up",
+        teacherAction: `Use a short question, image, or real-life example to activate prior knowledge about ${topicLabel}.`,
+        studentAction: "Answer one quick question and name what they already know.",
+        output: "One diagnostic note for grouping students.",
+      },
+      {
+        time: `${warmup}-${warmup + input} min`,
+        stage: "Input",
+        teacherAction: `Explain the core idea of ${topicLabel} with one model example and one guided check.`,
+        studentAction: "Annotate, repeat, or solve the model example with teacher support.",
+        output: "Shared model answer or worked example.",
+      },
+      {
+        time: `${warmup + input}-${warmup + input + practice} min`,
+        stage: "Guided Practice",
+        teacherAction: "Move from easier prompts to one challenge prompt; correct errors immediately.",
+        studentAction: "Work in pairs or individually, then compare answers with a checklist.",
+        output: "Completed practice set with corrections.",
+      },
+      {
+        time: `${warmup + input + practice}-${duration} min`,
+        stage: "Independent Output",
+        teacherAction: "Ask students to produce one final answer, paragraph, explanation, or mini-presentation.",
+        studentAction: "Submit one measurable output and reflect on the strongest point.",
+        output: "Exit ticket for teacher review.",
+      },
+    ],
+    slides: [
+      { title: `${subjectLabel}: ${topicLabel}`, bullets: [`Age: ${spec.age}`, `Grade: ${spec.grade}`, `Goal: ${spec.objective}`] },
+      { title: "Key Idea", bullets: ["What students must understand", "One model example", "One common mistake"] },
+      { title: "Guided Practice", bullets: ["Start with a supported task", "Move to a challenge task", "Check with rubric"] },
+      { title: "Exit Ticket", bullets: ["One final output", "One reflection", "One next step"] },
+    ],
+    quiz: [
+      { question: `What is the main idea of today's topic: ${topicLabel}?`, answer: "Students should explain the key concept in their own words." },
+      { question: "Which mistake should we avoid today?", answer: "Students identify the most common mistake from the model example." },
+      { question: "How can you use this skill outside class?", answer: "Students connect the skill to homework, school, or real life." },
+    ],
+    homework: [
+      `Finish one short practice task about ${topicLabel}.`,
+      "Write down two questions you still have.",
+      "Prepare one example to discuss in the next class.",
+    ],
+    rubric: [
+      { criterion: "Understanding", excellent: "Explains the idea clearly with an example.", developing: "Names the idea but needs support." },
+      { criterion: "Accuracy", excellent: "Uses correct steps, vocabulary, or evidence.", developing: "Has errors that affect meaning." },
+      { criterion: "Independence", excellent: "Completes the output with minimal support.", developing: "Needs teacher prompts to finish." },
+    ],
+    audio: {
+      title: "Teacher Audio Script",
+      script: `Today we are learning ${topicLabel}. First, we will look at one example. Then you will practice with support. At the end, you will create your own answer and explain your thinking.`,
+    },
+  };
+
+  Object.keys(result).forEach((key) => {
+    if (key !== "meta" && !spec.outputTypes.includes(key)) {
+      delete result[key];
+    }
+  });
+
+  return result;
+}
+
+async function callLessonBuilderAPI(payload) {
+  const baseUrl = process.env.LLM_BASE_URL || process.env.OPENAI_BASE_URL;
+  const apiKey = process.env.LLM_API_KEY || process.env.OPENAI_API_KEY;
+  const model = process.env.LLM_MODEL || process.env.OPENAI_MODEL || "gpt-4.1-mini";
+
+  if (!baseUrl || !apiKey) {
+    return null;
+  }
+
+  const spec = normalizeLessonBuilderPayload(payload);
+  const systemPrompt = [
+    "You are an international school lesson designer.",
+    "Return JSON only.",
+    "Generate a practical lesson package for teachers.",
+    "Use keys: meta, lessonPlan, slides, quiz, homework, rubric, audio.",
+    "Keep all items concise and classroom-ready.",
+  ].join(" ");
+
+  const response = await fetch(`${baseUrl.replace(/\/$/, "")}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.25,
+      messages: [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: JSON.stringify(spec) },
+      ],
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Lesson builder LLM request failed with ${response.status}`);
+  }
+
+  const data = await response.json();
+  const content = data.choices?.[0]?.message?.content || "";
+  return JSON.parse(content);
+}
+
+async function handleLessonBuilderGenerate(payload) {
+  try {
+    const remoteResult = await callLessonBuilderAPI(payload);
+    if (remoteResult) {
+      return { mode: "llm", result: remoteResult };
+    }
+  } catch (error) {
+    console.warn("Lesson builder LLM failed, falling back to local output.", error);
+  }
+
+  return { mode: "local", result: buildLessonBuilderFallback(payload) };
+}
+
 async function handlePronunciationToken() {
   const key = process.env.AZURE_SPEECH_KEY || process.env.SPEECH_KEY;
   const region = process.env.AZURE_SPEECH_REGION || process.env.SPEECH_REGION;
@@ -518,6 +679,17 @@ function createServer() {
       try {
         const payload = await readJson(req);
         const result = await handleTutorSearch(payload);
+        sendJson(res, 200, result);
+      } catch (error) {
+        sendJson(res, 400, { error: error.message || "Bad Request" });
+      }
+      return;
+    }
+
+    if (pathname === "/api/lesson-builder/generate" && req.method === "POST") {
+      try {
+        const payload = await readJson(req);
+        const result = await handleLessonBuilderGenerate(payload);
         sendJson(res, 200, result);
       } catch (error) {
         sendJson(res, 400, { error: error.message || "Bad Request" });
