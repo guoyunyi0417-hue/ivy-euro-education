@@ -62,6 +62,10 @@ npm start
 - `HEYGEN_IS_SANDBOX`
 - `HEYGEN_GREETING_TEXT`
 
+更完整的接入步骤我单独写在：
+
+- [HEYGEN_SETUP.md](HEYGEN_SETUP.md)
+
 如果你还在使用旧版 D-ID 连接，也保留了兼容配置，方便老环境平滑迁移：
 
 - `DID_CLIENT_KEY`
