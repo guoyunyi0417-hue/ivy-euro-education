@@ -121,6 +121,13 @@ function getRuntimeConfig() {
   const didTargetId = process.env.DID_TARGET_ID || "did-agent-container";
   const didGreetingText = process.env.DID_GREETING_TEXT || "Hello! Let's practice English together.";
   const didAutoConnect = process.env.DID_AUTO_CONNECT !== "false";
+  const heygenApiKey = process.env.HEYGEN_API_KEY || process.env.LIVEAVATAR_API_KEY || "";
+  const heygenAvatarId = process.env.HEYGEN_AVATAR_ID || process.env.LIVEAVATAR_AVATAR_ID || "";
+  const heygenContextId = process.env.HEYGEN_CONTEXT_ID || process.env.LIVEAVATAR_CONTEXT_ID || "";
+  const heygenEmbedUrl = process.env.HEYGEN_EMBED_URL || process.env.LIVEAVATAR_EMBED_URL || "";
+  const heygenTargetId = process.env.HEYGEN_TARGET_ID || "heygen-avatar-container";
+  const heygenGreetingText = process.env.HEYGEN_GREETING_TEXT || "Hello! Let's practice English together.";
+  const heygenSandbox = process.env.HEYGEN_IS_SANDBOX !== "false";
   const speechLanguage = process.env.AZURE_SPEECH_LANGUAGE || process.env.SPEECH_LANGUAGE || "en-US";
   const speechRegion = process.env.AZURE_SPEECH_REGION || process.env.SPEECH_REGION || "";
 
@@ -138,6 +145,92 @@ function getRuntimeConfig() {
       region: speechRegion,
       language: speechLanguage,
     },
+    heygen: {
+      enabled: Boolean(heygenEmbedUrl || (heygenApiKey && heygenAvatarId)),
+      hasApiKey: Boolean(heygenApiKey),
+      avatarId: heygenAvatarId,
+      contextId: heygenContextId,
+      embedUrl: heygenEmbedUrl,
+      targetId: heygenTargetId,
+      greetingText: heygenGreetingText,
+      isSandbox: heygenSandbox,
+    },
+  };
+}
+
+async function handleHeyGenEmbed(payload = {}) {
+  const embedUrl = payload.embedUrl || process.env.HEYGEN_EMBED_URL || process.env.LIVEAVATAR_EMBED_URL || "";
+  if (embedUrl) {
+    return {
+      enabled: true,
+      source: "env",
+      data: {
+        url: embedUrl,
+        script: `<iframe src="${embedUrl}" allow="microphone" title="LiveAvatar Embed" style="aspect-ratio: 16 / 9; width: 100%; border: 0; border-radius: 24px;"></iframe>`,
+      },
+      message: "Embed Avatar created successfully",
+    };
+  }
+
+  const apiKey = process.env.HEYGEN_API_KEY || process.env.LIVEAVATAR_API_KEY || "";
+  const avatarId = payload.avatarId || process.env.HEYGEN_AVATAR_ID || process.env.LIVEAVATAR_AVATAR_ID || "";
+  const contextId = payload.contextId || process.env.HEYGEN_CONTEXT_ID || process.env.LIVEAVATAR_CONTEXT_ID || "";
+  const isSandbox = payload.isSandbox ?? (process.env.HEYGEN_IS_SANDBOX !== "false");
+  const apiBaseUrl = (process.env.HEYGEN_API_BASE_URL || process.env.LIVEAVATAR_API_BASE_URL || "https://api.liveavatar.com").replace(/\/$/, "");
+
+  if (!apiKey) {
+    return {
+      enabled: false,
+      message: "HeyGen API key is not configured.",
+      hint: "Set HEYGEN_API_KEY or LIVEAVATAR_API_KEY on the server.",
+    };
+  }
+
+  if (!avatarId) {
+    return {
+      enabled: false,
+      message: "HeyGen avatar id is not configured.",
+      hint: "Set HEYGEN_AVATAR_ID or LIVEAVATAR_AVATAR_ID on the server.",
+    };
+  }
+
+  const body = {
+    avatar_id: avatarId,
+    is_sandbox: Boolean(isSandbox),
+  };
+
+  if (contextId) {
+    body.context_id = contextId;
+  }
+
+  const response = await fetch(`${apiBaseUrl}/v2/embeddings`, {
+    method: "POST",
+    headers: {
+      "X-API-KEY": apiKey,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  const responseText = await response.text();
+  let data;
+  try {
+    data = responseText ? JSON.parse(responseText) : {};
+  } catch {
+    data = { raw: responseText };
+  }
+
+  if (!response.ok) {
+    const detail = typeof data === "object" && data ? JSON.stringify(data) : responseText;
+    throw new Error(`HeyGen embed request failed with ${response.status}${detail ? `: ${detail}` : ""}`);
+  }
+
+  return {
+    enabled: true,
+    source: "api",
+    ...data,
+    data: data.data || data,
+    message: data.message || "Embed Avatar created successfully",
   };
 }
 
@@ -385,6 +478,17 @@ function createServer() {
 
     if (pathname === "/api/runtime-config") {
       sendJson(res, 200, getRuntimeConfig());
+      return;
+    }
+
+    if (pathname === "/api/liveavatar/embed" && req.method === "POST") {
+      try {
+        const payload = await readJson(req);
+        const result = await handleHeyGenEmbed(payload);
+        sendJson(res, 200, result);
+      } catch (error) {
+        sendJson(res, 400, { enabled: false, error: error.message || "Bad Request" });
+      }
       return;
     }
 

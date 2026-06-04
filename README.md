@@ -53,7 +53,16 @@ npm start
 - `AZURE_SPEECH_REGION`
 - `AZURE_SPEECH_LANGUAGE`
 
-如果你要让英语页的 D-ID 互动头像自动挂载，还可以配置：
+如果你要让英语页自动挂载 HeyGen LiveAvatar，还可以配置：
+
+- `HEYGEN_API_KEY`
+- `HEYGEN_AVATAR_ID`
+- `HEYGEN_CONTEXT_ID`
+- `HEYGEN_EMBED_URL`
+- `HEYGEN_IS_SANDBOX`
+- `HEYGEN_GREETING_TEXT`
+
+如果你还在使用旧版 D-ID 连接，也保留了兼容配置：
 
 - `DID_CLIENT_KEY`
 - `DID_AGENT_ID`
@@ -68,6 +77,7 @@ npm start
 - `POST /api/tutor/search`
 - `POST /api/tutor/feedback`
 - `GET /api/runtime-config`
+- `POST /api/liveavatar/embed`
 - `POST /api/speech/token`
 - `POST /api/pronunciation/assess`
 
